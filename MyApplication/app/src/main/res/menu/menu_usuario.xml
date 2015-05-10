@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.usuario.myapplication.UsuarioActivity"
+    >
+    <item android:id="@+id/action_exit" android:title="@string/close_session"
+        android:orderInCategory="100" app:showAsAction="never"
+        android:icon="@drawable/selector_btn_more"/>
+</menu>

@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark</item>
+        <item name="colorAccent">@color/accentColor</item>
+        <item name="android:dropDownSelector">@drawable/selector_btn_more</item>
+        <item name="android:dropDownHintAppearance">@drawable/selector_btn_more</item>
+    </style>
+
+    <style name="CustomToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+
+    </style>
+
+    <style name="editTexts">
+        <item name="android:inputType">textCapCharacters</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">25</item>
+    </style>
+
+    <style name="textoListasTitulo" parent="textoListasDescripcion">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/titulo</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="textoListasDescripcion">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/descripcion</item>
+
+    </style>
+
+</resources>

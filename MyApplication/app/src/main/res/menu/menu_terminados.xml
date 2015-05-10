@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.usuario.myapplication.TerminadosActivity">
+    <item
+        android:id="@+id/action_contribuir"
+        android:orderInCategory="200"
+        android:title="@string/action_contribuir"
+        android:icon="@drawable/selector_btn_contrib"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_perfil"
+        android:title="@string/perfil"
+        android:orderInCategory="200"
+        android:icon="@drawable/selector_btn_perfil"
+        app:showAsAction="always"/>
+
+</menu>
