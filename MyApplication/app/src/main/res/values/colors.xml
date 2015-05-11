@@ -5,5 +5,7 @@
     <color name="accentColor">#ffeb3b</color>
     <color name="fondo">#fff2df</color>
     <color name="titulo">#c55b4b</color>
+    <color name="fondo_popupitem">#f0e3ca</color>
+    <color name="text_popupitem">#312030</color>
     <color name="descripcion">#fff2df</color>
 </resources>

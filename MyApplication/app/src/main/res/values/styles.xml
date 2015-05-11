@@ -3,6 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="AppTheme.Base">
         <!-- Customize your theme here. -->
+        <item name="actionOverflowButtonStyle">@style/OverFlow</item>
+        <item name="actionOverflowMenuStyle">@style/PopupMenu.MyStyle</item>
+        <item name="textAppearanceLargePopupMenu">@style/myPopupMenuTextAppearanceSmall</item>
+        <item name="textAppearanceSmallPopupMenu">@style/myPopupMenuTextAppearanceLarge</item>
     </style>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
@@ -16,6 +20,22 @@
 
     <style name="CustomToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
 
+    </style>
+
+    <style name="PopupMenu.MyStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@color/fondo_popupitem</item>
+        <!--<item name="android:popupBackground">@drawable/selector_btn_sesion_cerrar</item>-->
+    </style>
+
+    <style name="OverFlow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/selector_btn_more</item>
+    </style>
+
+    <style name="myPopupMenuTextAppearanceSmall" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
+        <item name="android:textColor">@color/text_popupitem</item>
+    </style>
+    <style name="myPopupMenuTextAppearanceLarge" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large">
+        <item name="android:textColor">@color/text_popupitem</item>
     </style>
 
     <style name="editTexts">
