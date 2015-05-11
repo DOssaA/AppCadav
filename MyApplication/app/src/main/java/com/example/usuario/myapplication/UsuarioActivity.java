@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,12 @@ public class UsuarioActivity extends ActionBarActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(UsuarioActivity.this));   //importante para que no aparezca error -> Layout Manager obligatorio o nullPointer
 
+    }
+
+    public void onNuevoCadavre(View v){
+        Intent intent = new Intent(getApplicationContext(),Lienzo.class);
+        Log.d("sadad", "entra");
+        startActivity(intent);
     }
 
     /*
