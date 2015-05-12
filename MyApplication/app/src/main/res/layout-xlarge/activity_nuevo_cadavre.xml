@@ -1,0 +1,127 @@
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <include
+        android:id="@+id/app_bar_nuevo_cadavre"
+        layout="@layout/app_bar_nuevo_cadavre" />
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/nuevo_background"
+        tools:context="com.example.usuario.myapplication.NuevoCadavreActivity"
+        android:orientation="vertical"
+        android:layout_below="@+id/app_bar_nuevo_cadavre">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal" >
+            <View android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                ></View>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:id="@+id/editTextTituloNuevo"
+                android:hint="TITULO"
+                android:padding="24dp"
+                android:gravity="left"
+                android:background="@drawable/selector_titulo"
+                style="@style/editTexts"
+                />
+            <View android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                ></View>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal" >
+            <View android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                ></View>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:id="@+id/editTextDescripcionNuevo"
+                android:text=""
+                android:background="@drawable/selector_descripcion"
+                android:padding="24dp"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:gravity="top|left"
+                android:hint="DESCRIPCIÓN"
+                style="@style/editTextsExtended"
+                />
+            <View android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                ></View>
+        </LinearLayout>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_marginBottom="8dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal" >
+            <View android:layout_weight="3.9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                ></View>
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@drawable/btn_nuevo_iniciar"
+                android:id="@+id/btnIniciarNuevo"
+                android:onClick="onIniciarNuevo"
+                />
+            <View android:layout_weight="4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                ></View>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></View>
+    </LinearLayout>
+</RelativeLayout>

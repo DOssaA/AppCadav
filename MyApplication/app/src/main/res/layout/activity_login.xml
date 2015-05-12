@@ -23,7 +23,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="48dp"
-
+            android:padding="10dp"
             android:id="@+id/editTextUsuario"
             style="@style/editTexts"
             android:text=""
@@ -35,13 +35,14 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:padding="10dp"
             android:id="@+id/editTextContrasena"
             android:text=""
             android:adjustViewBounds="true"
             android:background="@drawable/selector_pass"
             android:layout_marginBottom="16dp"
             android:hint="CONTRASEÑA"
-            style="@style/editTexts"
+            style="@style/editTextsExtended"
             android:inputType="textPassword"/>
 
         <LinearLayout

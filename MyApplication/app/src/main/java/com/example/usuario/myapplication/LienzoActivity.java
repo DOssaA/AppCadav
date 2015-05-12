@@ -15,7 +15,7 @@ import android.widget.ImageButton;
 import java.util.UUID;
 
 
-public class Lienzo extends ActionBarActivity implements OnClickListener {
+public class LienzoActivity extends ActionBarActivity implements OnClickListener {
 
     private DrawingView drawView;
     private ImageButton currPaint,drawBtn,eraseBtn,newBtn,saveBtn;

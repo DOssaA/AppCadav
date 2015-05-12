@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/inicio_01"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:context="com.example.usuario.myapplication.SignUpActivity">
 
     <View
         android:layout_width="1dp"
@@ -15,9 +16,8 @@
         android:orientation="vertical"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginTop="8dp"
-        android:layout_weight="2.2"
-        tools:context="com.example.usuario.myapplication.SignUpActivity">
+        android:layout_marginTop="10dp"
+        android:layout_weight="2.2" >
 
 
         <EditText
@@ -25,8 +25,9 @@
             android:layout_height="48dp"
             android:id="@+id/editTextCorreoR"
             android:hint="CORREO"
+            android:padding="10dp"
             android:background="@drawable/selector_pass"
-            style="@style/editTexts"
+            style="@style/editTextsExtended"
             android:layout_marginBottom="8dp"
             />
         <EditText
@@ -36,6 +37,7 @@
             android:text=""
             android:background="@drawable/selector_usuario"
             android:hint="USUARIO"
+            android:padding="10dp"
             android:layout_marginBottom="8dp"
             style="@style/editTexts"
             />
@@ -48,8 +50,9 @@
             android:text=""
             android:background="@drawable/selector_pass"
             android:hint="PASSWORD"
+            android:padding="10dp"
             android:layout_marginBottom="8dp"
-            style="@style/editTexts"
+            style="@style/editTextsExtended"
             />
 
             <ImageButton

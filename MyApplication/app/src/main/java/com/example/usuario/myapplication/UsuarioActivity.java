@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.transition.TransitionInflater;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,7 +40,6 @@ public class UsuarioActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.selector_up_nav);
-       //getSupportActionBar().set(R.drawable.selector_btn_more);
 
         //control lista de cadaveres
         recyclerView = (RecyclerView) findViewById (R.id.drawerListUsuario);
@@ -52,8 +50,7 @@ public class UsuarioActivity extends ActionBarActivity {
     }
 
     public void onNuevoCadavre(View v){
-        Intent intent = new Intent(getApplicationContext(),Lienzo.class);
-        Log.d("sadad", "entra");
+        Intent intent = new Intent(UsuarioActivity.this,NuevoCadavreActivity.class);
         startActivity(intent);
     }
 

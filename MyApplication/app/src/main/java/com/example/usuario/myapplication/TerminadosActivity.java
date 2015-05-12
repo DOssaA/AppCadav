@@ -13,7 +13,6 @@ import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,8 +61,7 @@ public class TerminadosActivity extends ActionBarActivity {
     * //control Floating action button (boton + en la parte derecha inferior)
     * */
     public void onNuevoCadavre(View v){
-        Intent intent = new Intent(getApplicationContext(),Lienzo.class);
-        Log.d("sadad", "entra");
+        Intent intent = new Intent(getApplicationContext(),NuevoCadavreActivity.class);
         startActivity(intent);
     }
 
@@ -110,7 +108,7 @@ public class TerminadosActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_contribuir) {
 
-            startActivity(new Intent(this, Lienzo.class));
+            startActivity(new Intent(this, LienzoActivity.class));
         }
 
         if( id == R.id.action_perfil){
