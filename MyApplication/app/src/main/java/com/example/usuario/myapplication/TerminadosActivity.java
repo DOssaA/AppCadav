@@ -1,7 +1,10 @@
 package com.example.usuario.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -13,10 +16,20 @@ import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +41,8 @@ public class TerminadosActivity extends ActionBarActivity {
     private RecyclerView recyclerView;
     private CAdapter adapter;
     private Toolbar toolbar;
+    private Context context;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +62,7 @@ public class TerminadosActivity extends ActionBarActivity {
 
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+        context = getApplicationContext();
 
         //control lista de cadaveres
         recyclerView = (RecyclerView) findViewById (R.id.drawerList);
@@ -75,21 +91,42 @@ public class TerminadosActivity extends ActionBarActivity {
          */
     public static List<Info> getData(){
         List<Info> data = new ArrayList<>();
-
-        int[] images = {R.drawable.example2,R.drawable.example2,R.drawable.example2};
-        String[] titles= {"Navío", "Local", "Performance"};
-        String[] descriptions= {"Navío de mares paralelos incrustados en un remolino de viento de las cuatro longitudes influenciando la pasión de la vida", "Local", "Performance"};
-        for (int i=0; i< images.length && i< titles.length && i< descriptions.length; i++)
-        {
-            Info current = new Info();
-            current.title = titles[i];
-            current.imageId = images[i];
-            current.description = descriptions[i];
-            data.add(current);
-        }
         return data;
     }
 
+    /*
+        Descarga las creaciones que tengan estado igual a 1 de la base de datos
+     */
+    public void descargarCreacionesTerminadas(){
+        progressDialog = ProgressDialog.show(TerminadosActivity.this, "",
+                "Downloading Image...", true);
+        //Consultar la base de datos
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("creaciones");
+        query.whereEqualTo("estado", "1");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> scoreList, com.parse.ParseException e) {
+                if (e == null) {
+                    if(scoreList.size()==0){
+                        for(int i =0; i<scoreList.size();i++){
+                            Log.d("score", "Error: " + e.getMessage());
+                            ParseFile fileObject = (ParseFile) scoreList.get(0).get("canvas1");
+                            fileObject.getUrl();
+
+                            Info temporal = new Info();
+                        }
+
+                    }else{
+                        Toast.makeText(context,"No hay Cadavres",Toast.LENGTH_SHORT).show();
+                    }
+
+                } else
+                {
+                        Log.d("score", "Retrieved " + scoreList.size() + " scores");
+                        Toast.makeText(context,"Error de conexion",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

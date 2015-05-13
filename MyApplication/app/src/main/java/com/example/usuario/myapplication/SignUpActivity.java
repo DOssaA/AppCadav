@@ -50,7 +50,7 @@ public class SignUpActivity extends ActionBarActivity {
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 if (e == null) {
-                    Intent i = new Intent(signUpContext, LienzoActivity.class);
+                    Intent i = new Intent(signUpContext, TerminadosActivity.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(signUpContext, "Por favor revisa tus datos ingresados", Toast.LENGTH_SHORT).show();

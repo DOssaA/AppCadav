@@ -59,7 +59,7 @@ public class LoginActivity extends ActionBarActivity {
         ParseUser.logInInBackground(usuario, contrasena, new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
-                    Intent i = new Intent(loginContext, TerminadosActivity.class);
+                    Intent i = new Intent(loginContext, LienzoActivity.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(loginContext,"Usuario o contraseña incorrecta",Toast.LENGTH_SHORT).show();

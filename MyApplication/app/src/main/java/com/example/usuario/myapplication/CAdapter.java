@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,9 +64,10 @@ public class CAdapter extends RecyclerView.Adapter<CAdapter.MyViewHolder> {
         holder.description.setText(current.description);
 
         //String imageUri = "drawable://" + current.imageId;
-        Uri path = Uri.parse("android.resource://com.example.usuario.myapplication/" + current.imageId);
-        holder.image.setImageURI(path);
-
+        //Uri path = Uri.parse("android.resource://com.example.usuario.myapplication/" + current.imageId);
+//        holder.image.setImageURI(path);
+//        current.getUrl();
+//        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
         //holder.image.setImageBitmap(decodeFile(new File(path.toString()),20,30));
 
         //holder.image.setImageResource(current.imageId);

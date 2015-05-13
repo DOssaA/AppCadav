@@ -67,7 +67,7 @@ public class UsuarioActivity extends ActionBarActivity {
         {
             Info current = new Info();
             current.title = titles[i];
-            current.imageId = images[i];
+           // current.imageId = images[i];
             current.description = descriptions[i];
             data.add(current);
         }
