@@ -1,29 +1,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.usuario.myapplication.UsuarioActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondo"
-    tools:context="com.example.usuario.myapplication.UsuarioActivity">
-
-    <include
-        android:id="@+id/app_bar_usuario"
-        layout="@layout/app_bar_usuario" />
-
-    <ImageView
-        android:id="@+id/titulo_usuario"
-        android:layout_below="@+id/app_bar_usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:background="@drawable/seccion_usuario"/>
+    >
 
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/titulo_usuario"
+        android:layout_marginTop="-2dp"
         android:id="@+id/drawerListUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/titulo_usuario"
+        android:layout_below="@+id/app_bar_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="-4dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/seccion_usuario"
+        />
+
+    <include
+        android:id="@+id/app_bar_usuario"
+        layout="@layout/app_bar_usuario" />
 
     <!-- Boton + (float action button) -->
     <com.software.shell.fab.ActionButton

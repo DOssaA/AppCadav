@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +18,6 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 import java.io.ByteArrayOutputStream;
-import java.util.UUID;
 
 
 public class LienzoActivity extends ActionBarActivity implements OnClickListener {
@@ -42,8 +40,8 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         drawBtn.setOnClickListener(this);
 
         //Instance Brush sizes
-        smallBrush = getResources().getInteger(R.integer.small_size);
-        mediumBrush = getResources().getInteger(R.integer.medium_size);
+        smallBrush = 5;
+        mediumBrush = 15;
         largeBrush = getResources().getInteger(R.integer.large_size);
         drawView.setBrushSize(mediumBrush);
 

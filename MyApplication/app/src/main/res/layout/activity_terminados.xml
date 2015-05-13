@@ -13,17 +13,18 @@
     tools:context="com.example.usuario.myapplycation.TerminadosActivity"
     android:background="@color/fondo" >
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
-
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/app_bar"
         android:id="@+id/drawerList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp">
 
     </android.support.v7.widget.RecyclerView>
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar_terminados"/>
 
     <!--com.software.shell.fab.ActionButton
         android:id="@+id/action_button"

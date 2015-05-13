@@ -29,7 +29,7 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginContext=this.getApplicationContext();
+        loginContext=LoginActivity.this;
         user= (EditText)findViewById(R.id.editTextUsuario);
         password= (EditText)findViewById(R.id.editTextContrasena);
 
@@ -59,7 +59,7 @@ public class LoginActivity extends ActionBarActivity {
         ParseUser.logInInBackground(usuario, contrasena, new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
-                    Intent i = new Intent(loginContext, LienzoActivity.class);
+                    Intent i = new Intent(loginContext, TerminadosActivity.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(loginContext,"Usuario o contraseña incorrecta",Toast.LENGTH_SHORT).show();

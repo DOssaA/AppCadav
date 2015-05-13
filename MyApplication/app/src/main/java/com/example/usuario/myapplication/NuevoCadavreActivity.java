@@ -18,10 +18,11 @@ public class NuevoCadavreActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo_cadavre);
 
+        //App bar
         toolbar = (Toolbar) findViewById(R.id.app_bar_nuevo_cadavre);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.selector_up_nav);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //para up navigation
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.selector_up_nav);  //personalizacion icono
     }
 
     public void onIniciarNuevo(View v){

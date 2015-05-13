@@ -36,6 +36,8 @@ public class UsuarioActivity extends ActionBarActivity {
         }
 
         setContentView(R.layout.activity_usuario);
+
+        //App bar
         toolbar = (Toolbar) findViewById(R.id.app_bar_usuario);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
