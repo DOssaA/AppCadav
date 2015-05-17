@@ -8,6 +8,12 @@
         <item name="textAppearanceLargePopupMenu">@style/myPopupMenuTextAppearanceSmall</item>
         <item name="textAppearanceSmallPopupMenu">@style/myPopupMenuTextAppearanceLarge</item>
     </style>
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
@@ -20,13 +26,6 @@
 
     <style name="CustomToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
 
-    </style>
-
-    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="PopupMenu.MyStyle" parent="Widget.AppCompat.PopupMenu">

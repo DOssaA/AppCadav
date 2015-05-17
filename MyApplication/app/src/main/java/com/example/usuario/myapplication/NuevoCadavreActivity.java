@@ -7,11 +7,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class NuevoCadavreActivity extends ActionBarActivity {
 
     private Toolbar toolbar;
+    private EditText titulo;
+    private EditText descripcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +26,17 @@ public class NuevoCadavreActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //para up navigation
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.selector_up_nav);  //personalizacion icono
+
+        titulo = (EditText) findViewById(R.id.editTextTituloNuevo);
+        descripcion = (EditText) findViewById(R.id.editTextDescripcionNuevo);
     }
 
     public void onIniciarNuevo(View v){
-        startActivity(new Intent(getApplicationContext(),LienzoActivity.class));
+        Intent i=new Intent(getApplicationContext(),LienzoActivity.class);
+        i.putExtra("esnuevo", "esnuevo");
+        i.putExtra("titulo", titulo.getText().toString());
+        i.putExtra("descripcion", descripcion.getText().toString());
+        startActivity(i);
     }
 
     @Override
@@ -44,9 +54,9 @@ public class NuevoCadavreActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

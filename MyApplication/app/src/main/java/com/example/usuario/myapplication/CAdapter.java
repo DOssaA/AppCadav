@@ -4,8 +4,9 @@ package com.example.usuario.myapplication;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,22 +15,40 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.parse.GetDataCallback;
+import com.parse.ParseFile;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Alejo Monstruo on 4/1/2015.
- */
+
 public class CAdapter extends RecyclerView.Adapter<CAdapter.MyViewHolder> {
 
     private LayoutInflater inflater;            //inflador del xml de layout de los items: custom_row
     private List<Info> data = Collections.emptyList();   //lista de datos
-
+    private Context context;
+    public ImageLoader imageLoader;
+    //ImageLoader imageLoader;
     public CAdapter(Context context, List<Info> data){
         inflater = LayoutInflater.from(context);
         this.data = data;
+        this.context=context;
+        // Create global configuration and initialize ImageLoader with this config
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+                .threadPriority(Thread.NORM_PRIORITY-2).denyCacheImageMultipleSizesInMemory()
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .build();
+        imageLoader= ImageLoader.getInstance();
+        imageLoader.init(config);
+
+        //imageLoader = new ImageLoader(context);
         for (int i=0;i<data.size();i++)
         {
             Log.v("CAdapter "+i, ""+data.get(i).title+"  "+data.get(i).description);
@@ -59,59 +78,76 @@ public class CAdapter extends RecyclerView.Adapter<CAdapter.MyViewHolder> {
      */
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+
         Info current = data.get(position);   //deveulve el objeto de Info actual de la lista de datos
         holder.title.setText(current.title);
         holder.description.setText(current.description);
+        if(current.bitmap1 !=null && current.bitmap2 !=null){
+            holder.image.setImageBitmap(combineImages(current.bitmap1,current.bitmap2));
+            //imageLoader.displayImage(current.getUrl(),holder.image);
+        }
 
-        //String imageUri = "drawable://" + current.imageId;
-        //Uri path = Uri.parse("android.resource://com.example.usuario.myapplication/" + current.imageId);
-//        holder.image.setImageURI(path);
-//        current.getUrl();
-//        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-        //holder.image.setImageBitmap(decodeFile(new File(path.toString()),20,30));
-
-        //holder.image.setImageResource(current.imageId);
     }
 
-    private Bitmap decodeFile(File f,int req_Height,int req_Width){
-        try {
-            //decode image size
-            BitmapFactory.Options o1 = new BitmapFactory.Options();
-            o1.inJustDecodeBounds = true;
-            BitmapFactory.decodeStream(new FileInputStream(f),null,o1);
+    public Bitmap combineImages(Bitmap c, Bitmap s) { // can add a 3rd parameter 'String loc' if you want to save the new image - left some code to do that at the bottom
+        Bitmap cs = null;
 
+        int width, height = 0;
 
-            //Find the correct scale value. It should be the power of 2.
-            int width_tmp = o1.outWidth;
-            int height_tmp = o1.outHeight;
-            int scale = 1;
+        if(c.getWidth() > s.getWidth()) {
+            width = c.getWidth();
+            height = c.getHeight() + s.getHeight();
+        } else {
 
-            if(width_tmp > req_Width || height_tmp > req_Height)
-            {
-                int heightRatio = Math.round((float) height_tmp / (float) req_Height);
-                int widthRatio = Math.round((float) width_tmp / (float) req_Width);
-
-
-                scale = heightRatio < widthRatio ? heightRatio : widthRatio;
-            }
-
-            BitmapFactory.Options o2 = new BitmapFactory.Options();
-            o2.inSampleSize = scale;
-            o2.inScaled = false;
-            return BitmapFactory.decodeFile(f.getAbsolutePath(),o2);
+            width = s.getWidth();
+            height = c.getHeight() + s.getHeight();
         }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
+
+        cs = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+
+        Canvas comboImage = new Canvas(cs);
+
+        comboImage.drawBitmap(c, 0f, 0f, null);
+        comboImage.drawBitmap(s, 0f, c.getHeight(), null);
+
+        // this is an extra bit I added, just incase you want to save the new image somewhere and then return the location
+    /*String tmpImg = String.valueOf(System.currentTimeMillis()) + ".png";
+
+    OutputStream os = null;
+    try {
+      os = new FileOutputStream(loc + tmpImg);
+      cs.compress(CompressFormat.PNG, 100, os);
+    } catch(IOException e) {
+      Log.e("combineImages", "problem combining images", e);
+    }*/
+
+        return cs;
+    }
+
+
+    private Bitmap cutRightTop(Bitmap origialBitmap) {
+        Bitmap cutBitmap = Bitmap.createBitmap(origialBitmap.getWidth() / 2,
+                origialBitmap.getHeight() / 2, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(cutBitmap);
+        Rect desRect = new Rect(0, 0, origialBitmap.getWidth() / 2, origialBitmap.getHeight() / 2);
+        Rect srcRect = new Rect(origialBitmap.getWidth() / 2, 0, origialBitmap.getWidth(),
+                origialBitmap.getHeight() / 2);
+        canvas.drawBitmap(origialBitmap, srcRect, desRect, null);
+        return cutBitmap;
+    }
+
+    public static Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
+        Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
+        Canvas canvas = new Canvas(bmOverlay);
+        canvas.drawBitmap(bmp1, new Matrix(), null);
+        canvas.drawBitmap(bmp2, 0, 0, null);
+        return bmOverlay;
     }
 
     @Override
     public int getItemCount() {
         return data.size();
     }
-
 
     class MyViewHolder extends RecyclerView.ViewHolder{
 

@@ -1,5 +1,7 @@
 package com.example.usuario.myapplication;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +16,6 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 
@@ -22,7 +23,9 @@ public class LoginActivity extends ActionBarActivity {
     private Context loginContext;
     private EditText user;
     private EditText password;
-
+    private Dialog progressDialog;
+    public final static String KEY_USER = "user";
+    public final static String KEY_PASS = "pass";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,28 +43,43 @@ public class LoginActivity extends ActionBarActivity {
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "AG5MSosAwsvXvgQvEflw2Kb7biGb67BN1IKUrJ5x", "kzy7jp756pC8dVMsEkRMODvCQ8eG3FKVa5e1VaMA");
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
+
+
+    }
+    public void showProgressBar(String msg){
+        progressDialog = ProgressDialog.show(this, "", "Cargando...", true);
+    }
+
+    public void dismissProgressBar(){
+        if(progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
     //Eventos
     public void onLoguear(View v){
+
         loguear(user.getText().toString(),password.getText().toString());
     }
 
     public void onRegistrar(View v){
+
         Intent i = new Intent(this, SignUpActivity.class);
+        i.putExtra(KEY_USER,user.getText().toString().toLowerCase());
+        i.putExtra(KEY_PASS,password.getText().toString().toLowerCase());
         startActivity(i);
     }
 
     public void loguear(String usuario,String contrasena){
-        ParseUser.logInInBackground(usuario, contrasena, new LogInCallback() {
+        showProgressBar("Cargando...");
+        ParseUser.logInInBackground(usuario.toLowerCase(), contrasena.toLowerCase(), new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
+                    dismissProgressBar();
                     Intent i = new Intent(loginContext, TerminadosActivity.class);
                     startActivity(i);
+                    finish();
                 } else {
+                    dismissProgressBar();
                     Toast.makeText(loginContext,"Usuario o contraseña incorrecta",Toast.LENGTH_SHORT).show();
 
                 }
@@ -72,8 +90,8 @@ public class LoginActivity extends ActionBarActivity {
     public void guardarDatosUsuario(String usuario, String contrasena){
         SharedPreferences settings = getApplicationContext().getSharedPreferences("login", 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("usuario", usuario);
-        editor.putString("contrasena", contrasena);
+        editor.putString("usuario", usuario.toLowerCase());
+        editor.putString("contrasena", contrasena.toLowerCase());
 // Apply the edits!
         editor.apply();
     }

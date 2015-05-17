@@ -1,5 +1,6 @@
 package com.example.usuario.myapplication;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +21,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -29,7 +29,6 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +41,12 @@ public class TerminadosActivity extends ActionBarActivity {
     private CAdapter adapter;
     private Toolbar toolbar;
     private Context context;
-    private ProgressDialog progressDialog;
+    private List <Info> listaCreaciones;
+    private ProgressDialog mProgressDialog;
+    List<ParseObject> ob;
+    private Dialog progressDialog;
+    private Bitmap bitmap1=null,bitmap2=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,27 +62,59 @@ public class TerminadosActivity extends ActionBarActivity {
             getWindow().setReenterTransition(slide);
         }
 
-        setContentView(R.layout.activity_terminados);
+        Log.e("terminadosactivity","onCreate ");
+        //mSwipeRefreshLayout= (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
+//        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                // Refresh items
+//                refreshItems();
+//
+//            }
+//
+//        });
 
+        setContentView(R.layout.activity_terminados);
+        listaCreaciones= new ArrayList<Info>();
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         context = getApplicationContext();
-
-        //control lista de cadaveres
         recyclerView = (RecyclerView) findViewById (R.id.drawerList);
-        adapter = new CAdapter(TerminadosActivity.this, getData());   //this o get Activity()
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(TerminadosActivity.this));   //importante para que no aparezca error -> Layout Manager obligatorio o nullPointer
+        recyclerView.setLayoutManager(new LinearLayoutManager(TerminadosActivity.this));
 
 
     }
+    void refreshItems() {
+
+        descargarCreacionesTerminadas();
+
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        descargarCreacionesTerminadas();
+        Log.e("termiandosactivity", "tamaño"+listaCreaciones.size());
+    }
+    public void showProgressBar(String msg){
+        progressDialog = ProgressDialog.show(this, "", "Cargando...", true);
+    }
+
+    public void dismissProgressBar(){
+        if(progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
+    }
 
     /*
-    * //control Floating action button (boton + en la parte derecha inferior)
-    * */
+            * //control Floating action button (boton + en la parte derecha inferior)
+            * */
     public void onNuevoCadavre(View v){
         Intent intent = new Intent(getApplicationContext(),NuevoCadavreActivity.class);
+        intent.putExtra("esnuevo", "esnuevo");
         startActivity(intent);
+
     }
 
     @Override
@@ -94,39 +130,6 @@ public class TerminadosActivity extends ActionBarActivity {
         return data;
     }
 
-    /*
-        Descarga las creaciones que tengan estado igual a 1 de la base de datos
-     */
-    public void descargarCreacionesTerminadas(){
-        progressDialog = ProgressDialog.show(TerminadosActivity.this, "",
-                "Downloading Image...", true);
-        //Consultar la base de datos
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("creaciones");
-        query.whereEqualTo("estado", "1");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> scoreList, com.parse.ParseException e) {
-                if (e == null) {
-                    if(scoreList.size()==0){
-                        for(int i =0; i<scoreList.size();i++){
-                            Log.d("score", "Error: " + e.getMessage());
-                            ParseFile fileObject = (ParseFile) scoreList.get(0).get("canvas1");
-                            fileObject.getUrl();
-
-                            Info temporal = new Info();
-                        }
-
-                    }else{
-                        Toast.makeText(context,"No hay Cadavres",Toast.LENGTH_SHORT).show();
-                    }
-
-                } else
-                {
-                        Log.d("score", "Retrieved " + scoreList.size() + " scores");
-                        Toast.makeText(context,"Error de conexion",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,8 +147,14 @@ public class TerminadosActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_contribuir) {
-
-            startActivity(new Intent(this, LienzoActivity.class));
+            Intent i= new Intent(this, LienzoActivity.class);
+            i.putExtra("esnuevo","noesnuevo");
+            aqui falta lo de poner que saque aleatorio
+            String titulo = "FALTA PONER UNO DEL ALEATORIO"
+            String descripcion = "FALTA PONER UNO DEL ALEATORIO"
+            i.putExtra("titulo",titulo);
+            i.putExtra("descripcion",descripcion);
+            startActivity(i);
         }
 
         if( id == R.id.action_perfil){
@@ -154,7 +163,87 @@ public class TerminadosActivity extends ActionBarActivity {
                 startActivity(new Intent(this, UsuarioActivity.class), compat.toBundle());
             }else startActivity(new Intent(this, UsuarioActivity.class));
         }
-
         return super.onOptionsItemSelected(item);
     }
+    /*
+        Descarga las creaciones que tengan estado igual a 1 de la base de datos
+     */
+    public void descargarCreacionesTerminadas(){
+        showProgressBar("Cargando...");
+        //Consultar la base de datos
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Creacion");
+        query.whereEqualTo("estado", "1");
+        //Traer una lista de los objetos de la base de datos
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> scoreList, com.parse.ParseException e) {
+                if (e == null) {
+                    Log.e("terminadosactivity","scoreList.size"+scoreList.size());
+                    if(scoreList.size()!=0){
+                        for(int i =0; i<scoreList.size();i++){
+
+                            final ParseFile canvas1 = (ParseFile) scoreList.get(i).get("canvas1");
+                            final ParseFile canvas2 = (ParseFile) scoreList.get(i).get("canvas2");
+                            final String descripcion = ((String)scoreList.get(i).get("descripcion"));
+                            final String titulo = ((String)scoreList.get(i).get("nombre"));
+                            final String usuario1 = ((String)scoreList.get(i).get("usuario1"));
+                            final String usuario2 = ((String)scoreList.get(i).get("usuario2"));
+                            final String url1=canvas1.getUrl();
+
+                            //Creacion con los atributos traidos de Parse
+                            final Info temporal = new Info();
+
+                            canvas1.getDataInBackground(new GetDataCallback() {
+                                @Override
+                                public void done(byte[] bytes, com.parse.ParseException e) {
+                                    Log.d("test",
+                                            "We've got data in data.");
+                                    //Decodificar el primer Bitmap
+                                     final Bitmap bitmap1 = BitmapFactory
+                                            .decodeByteArray(
+                                                    bytes, 0,
+                                                    bytes.length);
+                                    canvas2.getDataInBackground(new GetDataCallback() {
+                                        @Override
+                                        public void done(byte[] bytes, com.parse.ParseException e) {
+
+                                            //Decodificar el segundo bitmap
+                                            Bitmap bitmap2 = BitmapFactory
+                                                    .decodeByteArray(
+                                                            bytes, 0,
+                                                            bytes.length);
+                                            temporal.setUrl(canvas1.getUrl());
+                                            temporal.setBitmap1(bitmap1);
+                                            temporal.setBitmap2(bitmap2);
+                                            temporal.setDescription(descripcion);
+                                            temporal.setUsuario1(usuario1);
+                                            temporal.setUsuario2(usuario2);
+                                            temporal.setTitle(titulo);
+                                            listaCreaciones.add(temporal);
+                                        }
+                                    });
+                                }
+                            });
+
+                        }
+                       // mSwipeRefreshLayout.setRefreshing(false);
+                        adapter = new CAdapter(context.getApplicationContext(), listaCreaciones);   //this o get Activity()
+                        recyclerView.setAdapter(adapter);
+                        dismissProgressBar();
+                    }else{
+                        Toast.makeText(context,"No hay Cadavres",Toast.LENGTH_SHORT).show();
+                    }
+                } else
+                {
+                    dismissProgressBar();
+                    Toast.makeText(context,"Error de conexion",Toast.LENGTH_SHORT).show();
+                }
+                adapter = new CAdapter(context.getApplicationContext(), listaCreaciones);   //this o get Activity()
+                recyclerView.setAdapter(adapter);
+            }
+
+        })
+        ;
+    }
+
+
 }

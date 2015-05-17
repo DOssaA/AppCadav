@@ -21,10 +21,20 @@ public class SignUpActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        String user= extras.getString(LoginActivity.KEY_USER);
+        String pass= extras.getString(LoginActivity.KEY_PASS);
+
         setContentView(R.layout.activity_sign_up);
+
         correo= (EditText)findViewById(R.id.editTextCorreoR);
         usuario=(EditText)findViewById(R.id.editTextUsuarioR);
         password=(EditText)findViewById(R.id.textPassword);
+
+        usuario.setText(user);
+        password.setText(pass);
+
+
 
 //        //para volver texto a solo mayúculas
 //        correo.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
@@ -43,8 +53,8 @@ public class SignUpActivity extends ActionBarActivity {
     //Registrar usuario en Parse
     public void registrar(String usuario,String contrasena,String correo){
         ParseUser user = new ParseUser();
-        user.setUsername(usuario);
-        user.setPassword(contrasena);
+        user.setUsername(usuario.toLowerCase());
+        user.setPassword(contrasena.toLowerCase());
         user.setEmail(correo);
 
         user.signUpInBackground(new SignUpCallback() {

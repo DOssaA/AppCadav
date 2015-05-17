@@ -1,10 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.usuario.myapplication.SignUpActivity"
+    >
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/inicio_01"
     android:orientation="horizontal"
-    tools:context="com.example.usuario.myapplication.SignUpActivity">
+    >
 
     <View
         android:layout_width="1dp"
@@ -75,3 +82,4 @@
         android:layout_weight="1"></View>
 
 </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="4dp">
+    
+    <TextView
+        android:id="@+id/listTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="Dummy text"
+        android:gravity="center_horizontal"
+        android:paddingTop="20dp"
+        android:background="@drawable/titulo"
+        style="@style/textoListasTitulo"
+        />
+
+    <ImageView
+        android:id="@+id/listImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/example2"
+        android:adjustViewBounds="true"/>
+
+
+        <TextView
+            android:id="@+id/listDescription"
+            android:background="@drawable/descripcion"
+            android:layout_width="wrap_content"
+            android:maxWidth="200dp"
+            android:layout_height="104dp"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:lines="3"
+            style="@style/textoListasDescripcion"
+            android:text="Dummy text"/>
+
+
+</LinearLayout><!-- From: file:/C:/AndroidStudioApps/Github/AppCadav/MyApplication/app/src/main/res/layout/custom_row.xml -->
