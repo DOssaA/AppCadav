@@ -149,9 +149,9 @@ public class TerminadosActivity extends ActionBarActivity {
         if (id == R.id.action_contribuir) {
             Intent i= new Intent(this, LienzoActivity.class);
             i.putExtra("esnuevo","noesnuevo");
-            aqui falta lo de poner que saque aleatorio
-            String titulo = "FALTA PONER UNO DEL ALEATORIO"
-            String descripcion = "FALTA PONER UNO DEL ALEATORIO"
+
+            String titulo = "FALTA PONER UNO DEL ALEATORIO";
+            String descripcion = "FALTA PONER UNO DEL ALEATORIO";
             i.putExtra("titulo",titulo);
             i.putExtra("descripcion",descripcion);
             startActivity(i);

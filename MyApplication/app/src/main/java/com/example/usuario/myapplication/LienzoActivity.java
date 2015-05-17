@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -36,7 +38,8 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
     private String titulo;
     private String descripcion;
     private  String idContribuir;
-    private String bitmapUrl;
+
+    private Bitmap bitmap;
     private Context context;
 
 
@@ -61,6 +64,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         mediumBrush = 15;
         largeBrush = getResources().getInteger(R.integer.large_size);
         drawView.setBrushSize(mediumBrush);
+        drawView.setBackgroundResource(R.drawable.btn_borrar);
 
         eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
         eraseBtn.setOnClickListener(this);
@@ -237,9 +241,22 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
             public void done(List<ParseObject> scoreList, com.parse.ParseException e) {
                 if (e == null) {
                     if (scoreList.size() > 0) {
-                        idContribuir = scoreList.get(0).getObjectId();
+                        final String temporal = scoreList.get(0).getObjectId();
                         ParseFile canvas1 = (ParseFile) scoreList.get(0).get("canvas1");
-                        bitmapUrl = canvas1.getUrl();
+                        canvas1.getDataInBackground(new GetDataCallback() {
+                            @Override
+                            public void done(byte[] bytes, ParseException e) {
+                                //Decodificar el primer Bitmap
+                                 bitmap = BitmapFactory
+                                        .decodeByteArray(
+                                                bytes, 0,
+                                                bytes.length);
+                                idContribuir = temporal;
+                                
+
+                            }
+                        });
+
 
                     } else {
                         Toast.makeText(context, "No hay cadavres para contribuir", Toast.LENGTH_SHORT).show();
