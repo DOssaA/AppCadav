@@ -60,11 +60,11 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         drawBtn.setOnClickListener(this);
 
         //Instance Brush sizes
-        smallBrush = 5;
-        mediumBrush = 15;
-        largeBrush = getResources().getInteger(R.integer.large_size);
+        smallBrush = 4;
+        mediumBrush = 12;
+        largeBrush = 25;
         drawView.setBrushSize(mediumBrush);
-        drawView.setBackgroundResource(R.drawable.btn_borrar);
+        drawView.setBackgroundResource(R.drawable.canvas_lienzo_terminar);
 
         eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
         eraseBtn.setOnClickListener(this);

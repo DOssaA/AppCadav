@@ -3,4 +3,4 @@
     <item android:drawable="@drawable/btn_atras_press" android:state_pressed="true"></item>
     <item android:drawable="@drawable/btn_atras_press" android:state_focused="true"></item>
     <item android:drawable="@drawable/btn_atras"></item>
-</selector><!-- From: file:/C:/Users/usuario/Desktop/AppCadav/MyApplication/app/src/main/res/drawable/selector_up_nav.xml -->
+</selector><!-- From: file:/C:/AndroidStudioApps/Github/AppCadav/MyApplication/app/src/main/res/drawable/selector_up_nav.xml -->
