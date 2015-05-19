@@ -2,6 +2,7 @@ package com.example.usuario.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -34,6 +35,11 @@ public class NuevoCadavreActivity extends ActionBarActivity {
 
         titulo = (EditText) findViewById(R.id.editTextTituloNuevo);
         descripcion = (EditText) findViewById(R.id.editTextDescripcionNuevo);
+
+        //Fuente texto
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/baron_neue/baron_neue.otf");
+        titulo.setTypeface(font);
+        descripcion.setTypeface(font);
     }
 
     public void onIniciarNuevo(View v){

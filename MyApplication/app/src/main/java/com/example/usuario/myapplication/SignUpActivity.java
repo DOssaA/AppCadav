@@ -2,12 +2,17 @@ package com.example.usuario.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseException;
@@ -34,6 +39,11 @@ public class SignUpActivity extends ActionBarActivity {
         usuario.setText(user);
         password.setText(pass);
 
+        //Fuente texto
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/baron_neue/baron_neue.otf");
+        usuario.setTypeface(font);
+        password.setTypeface(font);
+        correo.setTypeface(font);
 
 
 //        //para volver texto a solo mayúculas
@@ -63,7 +73,19 @@ public class SignUpActivity extends ActionBarActivity {
                     Intent i = new Intent(signUpContext, TerminadosActivity.class);
                     startActivity(i);
                 } else {
-                    Toast.makeText(signUpContext, "Por favor revisa tus datos ingresados", Toast.LENGTH_SHORT).show();
+                    Log.d("parse e",e.getMessage().toString());
+                    String msg;
+
+                    if(e.getCode() == ParseException.USERNAME_TAKEN){
+                        msg = "Por favor cambia el nombre, ya existe el usuario...";
+                    }else if(e.getCode() == ParseException.EMAIL_TAKEN){
+                        msg = "Ya existe un usuario con ese correo";
+                    }else
+                        msg = "Por favor revisa tus datos ingresados";
+
+                    Toast t = Toast.makeText(signUpContext, msg, Toast.LENGTH_SHORT);
+                    centerText(t.getView());
+                    t.show();
                     // Signup failed. Look at the ParseException to see what happened.
                 }
             }
@@ -90,5 +112,17 @@ public class SignUpActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    void centerText(View view) {
+        if( view instanceof TextView){
+            ((TextView) view).setGravity(Gravity.CENTER);
+        }else if( view instanceof ViewGroup){
+            ViewGroup group = (ViewGroup) view;
+            int n = group.getChildCount();
+            for( int i = 0; i<n; i++ ){
+                centerText(group.getChildAt(i));
+            }
+        }
     }
 }

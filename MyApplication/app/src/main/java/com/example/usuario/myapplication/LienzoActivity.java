@@ -156,14 +156,16 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                     drawView.setDrawingCacheEnabled(true);
                     if(isNuevo.equalsIgnoreCase("esnuevo")){
                         // Sube una nueva creacion si es nuevo
-                        subirCreacion(drawView.getDrawingCache(),"prueba","prueba","prueba");
+                        subirCreacion(drawView.getDrawingCache(), "prueba", "prueba", "prueba");
                         Intent i = new Intent(getApplicationContext(),TerminadosActivity.class);
                         startActivity(i);
+                        finish();
                     }else if(isNuevo.equalsIgnoreCase("noesnuevo")){
                         // Sube un aporte a una creacion existente
                         subirAporte(drawView.getDrawingCache());
                         Intent i = new Intent(getApplicationContext(),TerminadosActivity.class);
                         startActivity(i);
+                        finish();
                     }
               }
             });

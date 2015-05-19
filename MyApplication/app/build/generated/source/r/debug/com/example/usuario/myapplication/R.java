@@ -2003,8 +2003,8 @@ containing a value of this type.
         public static final int book_now=0x7f0b002e;
         public static final int btnIniciarNuevo=0x7f0b0065;
         public static final int btnRegistrar=0x7f0b0069;
-        public static final int buttonLogin=0x7f0b0061;
-        public static final int buttonRegistrar=0x7f0b0060;
+        public static final int buttonLogin=0x7f0b0060;
+        public static final int buttonRegistrar=0x7f0b0061;
         public static final int buyButton=0x7f0b002b;
         public static final int buy_now=0x7f0b002f;
         public static final int buy_with_google=0x7f0b0030;

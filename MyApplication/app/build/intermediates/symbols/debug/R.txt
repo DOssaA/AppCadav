@@ -634,8 +634,8 @@ int id beginning 0x7f0b0016
 int id book_now 0x7f0b002e
 int id btnIniciarNuevo 0x7f0b0065
 int id btnRegistrar 0x7f0b0069
-int id buttonLogin 0x7f0b0061
-int id buttonRegistrar 0x7f0b0060
+int id buttonLogin 0x7f0b0060
+int id buttonRegistrar 0x7f0b0061
 int id buyButton 0x7f0b002b
 int id buy_now 0x7f0b002f
 int id buy_with_google 0x7f0b0030

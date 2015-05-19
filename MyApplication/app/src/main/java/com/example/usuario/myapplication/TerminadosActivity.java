@@ -74,6 +74,7 @@ public class TerminadosActivity extends ActionBarActivity {
 //
 //        });
 
+
         setContentView(R.layout.activity_terminados);
         listaCreaciones= new ArrayList<Info>();
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -81,7 +82,7 @@ public class TerminadosActivity extends ActionBarActivity {
         context = getApplicationContext();
         recyclerView = (RecyclerView) findViewById (R.id.drawerList);
         recyclerView.setLayoutManager(new LinearLayoutManager(TerminadosActivity.this));
-
+        descargarCreacionesTerminadas();
 
     }
     void refreshItems() {
@@ -169,7 +170,7 @@ public class TerminadosActivity extends ActionBarActivity {
         Descarga las creaciones que tengan estado igual a 1 de la base de datos
      */
     public void descargarCreacionesTerminadas(){
-        showProgressBar("Cargando...");
+        //showProgressBar("Cargando...");
         //Consultar la base de datos
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Creacion");
         query.whereEqualTo("estado", "1");
