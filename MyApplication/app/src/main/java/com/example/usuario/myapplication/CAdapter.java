@@ -40,13 +40,13 @@ public class CAdapter extends RecyclerView.Adapter<CAdapter.MyViewHolder> {
         this.data = data;
         this.context=context;
         // Create global configuration and initialize ImageLoader with this config
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
-                .threadPriority(Thread.NORM_PRIORITY-2).denyCacheImageMultipleSizesInMemory()
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-                .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .build();
-        imageLoader= ImageLoader.getInstance();
-        imageLoader.init(config);
+//        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+//                .threadPriority(Thread.NORM_PRIORITY-2).denyCacheImageMultipleSizesInMemory()
+//                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+//                .tasksProcessingOrder(QueueProcessingType.LIFO)
+//                .build();
+//        imageLoader= ImageLoader.getInstance();
+//        imageLoader.init(config);
 
         //imageLoader = new ImageLoader(context);
         for (int i=0;i<data.size();i++)
@@ -78,13 +78,15 @@ public class CAdapter extends RecyclerView.Adapter<CAdapter.MyViewHolder> {
      */
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
+        if(position>=0){
         Info current = data.get(position);   //deveulve el objeto de Info actual de la lista de datos
         holder.title.setText(current.title);
         holder.description.setText(current.description);
         if(current.bitmap1 !=null && current.bitmap2 !=null){
             holder.image.setImageBitmap(combineImages(current.bitmap1,current.bitmap2));
+            //holder.image.setImageBitmap(cutRightTop(current.bitmap1));
             //imageLoader.displayImage(current.getUrl(),holder.image);
+        }
         }
 
     }
@@ -125,16 +127,7 @@ public class CAdapter extends RecyclerView.Adapter<CAdapter.MyViewHolder> {
     }
 
 
-    private Bitmap cutRightTop(Bitmap origialBitmap) {
-        Bitmap cutBitmap = Bitmap.createBitmap(origialBitmap.getWidth() / 2,
-                origialBitmap.getHeight() / 2, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(cutBitmap);
-        Rect desRect = new Rect(0, 0, origialBitmap.getWidth() / 2, origialBitmap.getHeight() / 2);
-        Rect srcRect = new Rect(origialBitmap.getWidth() / 2, 0, origialBitmap.getWidth(),
-                origialBitmap.getHeight() / 2);
-        canvas.drawBitmap(origialBitmap, srcRect, desRect, null);
-        return cutBitmap;
-    }
+
 
     public static Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());

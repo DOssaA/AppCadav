@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,7 +26,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -46,6 +50,8 @@ public class TerminadosActivity extends ActionBarActivity {
     List<ParseObject> ob;
     private Dialog progressDialog;
     private Bitmap bitmap1=null,bitmap2=null;
+    private Bitmap bmpAleatorio;
+    private String idContribuir;
 
 
     @Override
@@ -73,7 +79,6 @@ public class TerminadosActivity extends ActionBarActivity {
 //            }
 //
 //        });
-
         setContentView(R.layout.activity_terminados);
         listaCreaciones= new ArrayList<Info>();
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -81,23 +86,33 @@ public class TerminadosActivity extends ActionBarActivity {
         context = getApplicationContext();
         recyclerView = (RecyclerView) findViewById (R.id.drawerList);
         recyclerView.setLayoutManager(new LinearLayoutManager(TerminadosActivity.this));
-
-
+        Log.e("terminadosActivity","onCreate");
+        descargarCreacionesTerminadas();
     }
+
     void refreshItems() {
 
-        descargarCreacionesTerminadas();
-
     }
-
-
 
     @Override
     protected void onResume() {
         super.onResume();
-        descargarCreacionesTerminadas();
-        Log.e("termiandosactivity", "tamaño"+listaCreaciones.size());
+
+
+
+        Log.e("terminadosActivity","onResume"+listaCreaciones.size());
+
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        adapter = new CAdapter(TerminadosActivity.this,listaCreaciones);   //this o get Activity()
+        recyclerView.setAdapter(adapter);
+        dismissProgressBar();
+        Log.e("terminadosActivity","onRestart"+listaCreaciones.size());
+    }
+
     public void showProgressBar(String msg){
         progressDialog = ProgressDialog.show(this, "", "Cargando...", true);
     }
@@ -147,14 +162,9 @@ public class TerminadosActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_contribuir) {
-            Intent i= new Intent(this, LienzoActivity.class);
-            i.putExtra("esnuevo","noesnuevo");
+            listaCreaciones.clear();
+            obtenerCadaverAleatorio();
 
-            String titulo = "FALTA PONER UNO DEL ALEATORIO";
-            String descripcion = "FALTA PONER UNO DEL ALEATORIO";
-            i.putExtra("titulo",titulo);
-            i.putExtra("descripcion",descripcion);
-            startActivity(i);
         }
 
         if( id == R.id.action_perfil){
@@ -188,7 +198,6 @@ public class TerminadosActivity extends ActionBarActivity {
                             final String usuario1 = ((String)scoreList.get(i).get("usuario1"));
                             final String usuario2 = ((String)scoreList.get(i).get("usuario2"));
                             final String url1=canvas1.getUrl();
-
                             //Creacion con los atributos traidos de Parse
                             final Info temporal = new Info();
 
@@ -219,31 +228,61 @@ public class TerminadosActivity extends ActionBarActivity {
                                             temporal.setUsuario2(usuario2);
                                             temporal.setTitle(titulo);
                                             listaCreaciones.add(temporal);
+                                            adapter = new CAdapter(TerminadosActivity.this,listaCreaciones);   //this o get Activity()
+                                            recyclerView.setAdapter(adapter);
                                         }
                                     });
                                 }
                             });
 
                         }
-                       // mSwipeRefreshLayout.setRefreshing(false);
-                        adapter = new CAdapter(context.getApplicationContext(), listaCreaciones);   //this o get Activity()
-                        recyclerView.setAdapter(adapter);
+                        listaCreaciones.clear();
                         dismissProgressBar();
+                       // mSwipeRefreshLayout.setRefreshing(false);
                     }else{
                         Toast.makeText(context,"No hay Cadavres",Toast.LENGTH_SHORT).show();
                     }
+
+
                 } else
                 {
-                    dismissProgressBar();
+
                     Toast.makeText(context,"Error de conexion",Toast.LENGTH_SHORT).show();
                 }
-                adapter = new CAdapter(context.getApplicationContext(), listaCreaciones);   //this o get Activity()
-                recyclerView.setAdapter(adapter);
             }
-
         })
         ;
+
     }
+    /*
+    Comprobar si hay cadaveres disponibles para contribuir
+     */
+    public void obtenerCadaverAleatorio() {
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Creacion");
+        query.whereEqualTo("estado", "0");
+        query.orderByAscending("updatedAt");
+        final boolean resultado;
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> scoreList, com.parse.ParseException e) {
+                if (e == null) {
+                    if (scoreList.size() > 0) {
+                        Intent i= new Intent(context, LienzoActivity.class);
+                        i.putExtra("esnuevo","noesnuevo");
+                        startActivity(i);
+                    } else {
+                        Toast.makeText(context, "No hay cadavres para contribuir", Toast.LENGTH_SHORT).show();
+                        descargarCreacionesTerminadas();
+
+                    }
+                }else{
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+
 
 
 }

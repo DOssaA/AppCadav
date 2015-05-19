@@ -2,6 +2,7 @@ package com.example.usuario.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -56,6 +57,7 @@ public class SignUpActivity extends ActionBarActivity {
         user.setUsername(usuario.toLowerCase());
         user.setPassword(contrasena.toLowerCase());
         user.setEmail(correo);
+        guardarDatosUsuario(usuario,contrasena);
 
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
@@ -68,6 +70,14 @@ public class SignUpActivity extends ActionBarActivity {
                 }
             }
         });
+    }
+    public void guardarDatosUsuario(String usuario, String contrasena){
+        final SharedPreferences settings = getApplicationContext().getSharedPreferences("login", this.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("usuario", usuario.toLowerCase());
+        editor.apply();
+        editor.putString("contrasena", contrasena.toLowerCase());
+        editor.apply();
     }
 
     @Override

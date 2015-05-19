@@ -1,6 +1,8 @@
 package com.example.usuario.myapplication;
 
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.view.View;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -31,6 +33,8 @@ public class DrawingView extends View {
     //Brush Size
     private float brushSize, lastBrushSize;
 
+    private Bitmap backgroundBitmap = null;
+
     private boolean erase=false;
 
     public DrawingView(Context context, AttributeSet attrs){
@@ -38,7 +42,16 @@ public class DrawingView extends View {
         setupDrawing();
     }
 
+    public Bitmap getBackgroundBitmap() {
+        return backgroundBitmap;
+    }
+
+    public void setBackgroundBitmap(Bitmap backgroundBitmap) {
+        this.backgroundBitmap = backgroundBitmap;
+    }
+
     private void setupDrawing(){
+
         brushSize = getResources().getInteger(R.integer.medium_size);
         lastBrushSize = brushSize;
 //get drawing area setup for interaction
@@ -66,9 +79,53 @@ public class DrawingView extends View {
         drawCanvas = new Canvas(canvasBitmap);
     }
 
+    /*
+    Se activa cuando el usuario oprime la pantalla para dibujar
+     */
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+        if(getBackgroundBitmap() != null){
+            Bitmap bmp= getBackgroundBitmap();
+            bmp = cutBottom(bmp);
+            canvas.drawBitmap(bmp, 0,0, canvasPaint);
+            canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+            // canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+            canvas.drawPath(drawPath, drawPaint);
+
+        }else{
+            canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+            canvas.drawPath(drawPath, drawPaint);
+        }
+
+    }
+    private Bitmap cutBottom(Bitmap origialBitmap) {
+        Bitmap cutBitmap = Bitmap.createBitmap(origialBitmap.getWidth(),
+                origialBitmap.getHeight()/2, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(cutBitmap);
+        Rect srcRect = new Rect(0, 6*(origialBitmap.getHeight() / 7), origialBitmap.getWidth() ,
+                origialBitmap.getHeight());
+        Rect desRect = new Rect(0, 0, origialBitmap.getWidth(), origialBitmap.getHeight() / 2);
+        canvas.drawBitmap(origialBitmap, srcRect, desRect, null);
+        return cutBitmap;
+    }
+    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+        return resizedBitmap;
+    }
+
+    protected void onDrawBitmap(Canvas canvas,Bitmap bmp){
+        canvas.drawBitmap(bmp,0,0,canvasPaint);
         canvas.drawPath(drawPath, drawPaint);
     }
 

@@ -5,10 +5,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,9 +48,10 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lienzo);
         Bundle extras = getIntent().getExtras();
         isNuevo= extras.getString("esnuevo");
+
+        setContentView(R.layout.activity_lienzo);
         titulo= extras.getString("titulo");
         descripcion= extras.getString("descripcion");
         drawView = (DrawingView)findViewById(R.id.drawing);
@@ -58,10 +61,11 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
         drawBtn = (ImageButton)findViewById(R.id.draw_btn);
         drawBtn.setOnClickListener(this);
+        drawView.setColor("#312030");
 
         //Instance Brush sizes
-        smallBrush = 5;
-        mediumBrush = 15;
+        smallBrush = 3;
+        mediumBrush = 10;
         largeBrush = getResources().getInteger(R.integer.large_size);
         drawView.setBrushSize(mediumBrush);
         drawView.setBackgroundResource(R.drawable.btn_borrar);
@@ -73,7 +77,14 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         saveBtn.setOnClickListener(this);
         idContribuir="";
         context= getApplicationContext();
-        obtenerCadaverAleatorio();
+        if(isNuevo.equalsIgnoreCase("noesnuevo")){
+            obtenerCadaverAleatorio();
+        }
+
+
+
+
+
     }
 
     @Override
@@ -156,7 +167,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                     drawView.setDrawingCacheEnabled(true);
                     if(isNuevo.equalsIgnoreCase("esnuevo")){
                         // Sube una nueva creacion si es nuevo
-                        subirCreacion(drawView.getDrawingCache(),"prueba","prueba","prueba");
+                        subirCreacion(drawView.getDrawingCache(),titulo,descripcion,getNick());
                         Intent i = new Intent(getApplicationContext(),TerminadosActivity.class);
                         startActivity(i);
                     }else if(isNuevo.equalsIgnoreCase("noesnuevo")){
@@ -164,6 +175,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                         subirAporte(drawView.getDrawingCache());
                         Intent i = new Intent(getApplicationContext(),TerminadosActivity.class);
                         startActivity(i);
+
                     }
               }
             });
@@ -187,7 +199,6 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         file.saveInBackground();
         // Create a New Class called "ImageUpload" in Parse
         ParseObject imgupload = new ParseObject("Creacion");
-
         imgupload.put("nombre", nombre);
         imgupload.put("usuario1", usuario);
         imgupload.put("canvas1", file);
@@ -197,20 +208,38 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         imgupload.saveInBackground();
 
     }
+
     public void subirAporte(final Bitmap bitmap){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Creacion");
 // Retrieve the object by id
         query.getInBackground(idContribuir, new GetCallback<ParseObject>() {
             public void done(ParseObject creacion, ParseException e) {
                 if (e == null) {
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    // Compress image to lower quality scale 1 - 100
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] image = stream.toByteArray();
+                    // Create the ParseFile
+                    ParseFile file = new ParseFile("image.png", image);
+                    // Upload the image into Parse Cloud
+                    file.saveInBackground();
                     // Now let's update it with some new data. In this case, only cheatMode and score
                     // will get sent to the Parse Cloud. playerName hasn't changed.
                     creacion.put("estado", 1+"");
-                    creacion.put("canvas1", bitmap);
+                    creacion.put("canvas2", file);
+                    creacion.put("usuario2",getNick());
                     creacion.saveInBackground();
                 }
             }
         });
+    }
+
+    public String getNick() {
+        // Obtener el nick del SharedPreferences
+        final SharedPreferences prefs = getSharedPreferences("login", this.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String nickPreference = prefs.getString("usuario", "nulo");
+        return nickPreference;
     }
 
     /*
@@ -226,6 +255,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                     // will get sent to the Parse Cloud. playerName hasn't changed.
                     creacion.put("estado", estado+"");
                     creacion.saveInBackground();
+                    Log.e("lienzoactivity","CAMBIARESTADO");
                 }
             }
         });
@@ -236,6 +266,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
 
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Creacion");
         query.whereEqualTo("estado", "0");
+        query.orderByAscending("updatedAt");
         final boolean resultado;
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> scoreList, com.parse.ParseException e) {
@@ -252,27 +283,26 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                                                 bytes, 0,
                                                 bytes.length);
                                 idContribuir = temporal;
-                                
+                                drawView.setBackgroundBitmap(bitmap);
+                                Log.e("lienzoactivity", " se obtuvo el cadaver aleatorio");
+                                cambiarEstadoCreacion(2);
 
                             }
                         });
-
-
                     } else {
                         Toast.makeText(context, "No hay cadavres para contribuir", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LienzoActivity.this,TerminadosActivity.class));
                     }
                 }
             }
         });
-        cambiarEstadoCreacion(2);
-
     }
-
 
     public void paintClicked(View view){
         //use chosen color
-        if(view!=currPaint){
-//update color
+        if(view!=currPaint)
+        {
+        //update color
             drawView.setErase(false);
             drawView.setBrushSize(drawView.getLastBrushSize());
             ImageButton imgView = (ImageButton)view;

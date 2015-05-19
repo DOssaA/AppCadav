@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +44,12 @@ public class LoginActivity extends ActionBarActivity {
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "AG5MSosAwsvXvgQvEflw2Kb7biGb67BN1IKUrJ5x", "kzy7jp756pC8dVMsEkRMODvCQ8eG3FKVa5e1VaMA");
-
+        if(getCredenciales()){
+            Intent i = new Intent(this, TerminadosActivity.class);
+            i.putExtra(KEY_USER,user.getText().toString().toLowerCase());
+            i.putExtra(KEY_PASS,password.getText().toString().toLowerCase());
+            startActivity(i);
+        }
 
     }
     public void showProgressBar(String msg){
@@ -69,12 +75,13 @@ public class LoginActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    public void loguear(String usuario,String contrasena){
+    public void loguear(final String usuario, final String contrasena){
         showProgressBar("Cargando...");
         ParseUser.logInInBackground(usuario.toLowerCase(), contrasena.toLowerCase(), new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
                     dismissProgressBar();
+                    guardarDatosUsuario(usuario,contrasena);
                     Intent i = new Intent(loginContext, TerminadosActivity.class);
                     startActivity(i);
                     finish();
@@ -88,12 +95,27 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void guardarDatosUsuario(String usuario, String contrasena){
-        SharedPreferences settings = getApplicationContext().getSharedPreferences("login", 0);
+        final SharedPreferences settings = getApplicationContext().getSharedPreferences("login", this.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("usuario", usuario.toLowerCase());
-        editor.putString("contrasena", contrasena.toLowerCase());
-// Apply the edits!
         editor.apply();
+        editor.putString("contrasena", contrasena.toLowerCase());
+        editor.apply();
+    }
+
+    public boolean getCredenciales() {
+        // Obtener el nick
+        final SharedPreferences prefs = getSharedPreferences("login", this.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String nickPreference = prefs.getString("usuario", "nulo");
+        String passPreference = prefs.getString("contrasena", "nulo");
+        Log.e("loginactivity", nickPreference + passPreference);
+
+            if(nickPreference.equalsIgnoreCase("nulo")||passPreference.equalsIgnoreCase("nulo")){
+                return false;
+            }else{
+                return true;
+            }
     }
 
     @Override
