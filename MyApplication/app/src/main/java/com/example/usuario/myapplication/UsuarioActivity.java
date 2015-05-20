@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.utils.L;
 import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseFile;
@@ -29,12 +31,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UsuarioActivity extends ActionBarActivity {
+public class UsuarioActivity extends ActionBarActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView recyclerView;
     private CAdapter adapter;
     private Toolbar toolbar;
     private List <Info> listaCreaciones;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,9 @@ public class UsuarioActivity extends ActionBarActivity {
         }
 
         setContentView(R.layout.activity_usuario);
+
+        mSwipeRefreshLayout= (SwipeRefreshLayout)findViewById(R.id.mSwipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
 
         //App bar
         toolbar = (Toolbar) findViewById(R.id.app_bar_usuario);
@@ -214,8 +220,7 @@ public class UsuarioActivity extends ActionBarActivity {
 
                     Toast.makeText(UsuarioActivity.this,"Error de conexion",Toast.LENGTH_SHORT).show();
                 }
-                adapter = new CAdapter(UsuarioActivity.this, listaCreaciones);   //this o get Activity()
-                recyclerView.setAdapter(adapter);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
 
         })
@@ -231,4 +236,9 @@ public class UsuarioActivity extends ActionBarActivity {
     }
 
 
+    @Override
+    public void onRefresh() {
+        L.e("onRefresh");
+        descargarCreacionesTerminadas();
+    }
 }

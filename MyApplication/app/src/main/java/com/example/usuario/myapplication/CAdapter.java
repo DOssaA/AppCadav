@@ -3,7 +3,6 @@ package com.example.usuario.myapplication;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
@@ -15,17 +14,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.example.usuario.anim.AnimationUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.parse.GetDataCallback;
-import com.parse.ParseFile;
 
+<<<<<<< HEAD
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+=======
+>>>>>>> a50cafcda714b4c492bd00a5115b2b8ba0898bbb
 import java.util.Collections;
 import java.util.List;
 
@@ -95,6 +93,7 @@ public class CAdapter extends RecyclerView.Adapter<CAdapter.MyViewHolder> {
 
         }
         }
+        AnimationUtils.animate(holder);
     }
 
 
