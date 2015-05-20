@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.utils.L;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -39,7 +41,7 @@ import java.util.List;
 /*
 
  */
-public class TerminadosActivity extends ActionBarActivity {
+public class TerminadosActivity extends ActionBarActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView recyclerView;
     private CAdapter adapter;
@@ -52,6 +54,8 @@ public class TerminadosActivity extends ActionBarActivity {
     private Bitmap bitmap1=null,bitmap2=null;
     private Bitmap bmpAleatorio;
     private String idContribuir;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
 
 
     @Override
@@ -69,25 +73,22 @@ public class TerminadosActivity extends ActionBarActivity {
         }
 
         Log.e("terminadosactivity","onCreate ");
-        //mSwipeRefreshLayout= (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
-//        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                // Refresh items
-//                refreshItems();
-//
-//            }
-//
-//        });
+
         setContentView(R.layout.activity_terminados);
+
+        mSwipeRefreshLayout= (SwipeRefreshLayout)findViewById(R.id.mSwipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+
         listaCreaciones= new ArrayList<Info>();
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         context = getApplicationContext();
         recyclerView = (RecyclerView) findViewById (R.id.drawerList);
         recyclerView.setLayoutManager(new LinearLayoutManager(TerminadosActivity.this));
+
         Log.e("terminadosActivity","onCreate");
         descargarCreacionesTerminadas();
+
     }
 
     void refreshItems() {
@@ -177,8 +178,9 @@ public class TerminadosActivity extends ActionBarActivity {
         Descarga las creaciones que tengan estado igual a 1 de la base de datos
      */
     public void descargarCreacionesTerminadas(){
-        showProgressBar("Cargando...");
+        //showProgressBar("Cargando...");
         //Consultar la base de datos
+        listaCreaciones= new ArrayList<Info>();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Creacion");
         query.whereEqualTo("estado", "1");
         query.orderByDescending("createdAt");
@@ -235,7 +237,9 @@ public class TerminadosActivity extends ActionBarActivity {
                             });
 
                         }
+
                         listaCreaciones.clear();
+
                         dismissProgressBar();
                        // mSwipeRefreshLayout.setRefreshing(false);
                     }else{
@@ -249,6 +253,8 @@ public class TerminadosActivity extends ActionBarActivity {
                     dismissProgressBar();
                     Toast.makeText(context,"Error de conexion",Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
     }
@@ -281,7 +287,10 @@ public class TerminadosActivity extends ActionBarActivity {
         });
     }
 
-
-
+    @Override
+    public void onRefresh() {
+        L.e("onRefresh");
+        descargarCreacionesTerminadas();
+    }
 
 }

@@ -65,11 +65,13 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         drawView.setColor("#312030");
 
         //Instance Brush sizes
-        smallBrush = 3;
-        mediumBrush = 10;
-        largeBrush = getResources().getInteger(R.integer.large_size);
+
+        smallBrush = 4;
+        mediumBrush = 12;
+        largeBrush = 25;
+
         drawView.setBrushSize(mediumBrush);
-        drawView.setBackgroundResource(R.drawable.btn_borrar);
+        drawView.setBackgroundResource(R.drawable.canvas_lienzo_terminar);
 
         eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
         eraseBtn.setOnClickListener(this);
@@ -163,14 +165,19 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                     drawView.setDrawingCacheEnabled(true);
                     if(isNuevo.equalsIgnoreCase("esnuevo")){
                         // Sube una nueva creacion si es nuevo
+
                         subirCreacion(drawView.getDrawingCache(),titulo,descripcion,getNick());
+
                         Intent i = new Intent(getApplicationContext(),TerminadosActivity.class);
                         startActivity(i);
+                        finish();
                     }else if(isNuevo.equalsIgnoreCase("noesnuevo")){
                         // Sube un aporte a una creacion existente
                         subirAporte(drawView.getDrawingCache());
                         Intent i = new Intent(getApplicationContext(),TerminadosActivity.class);
                         startActivity(i);
+
+                        finish();
 
                     }
               }
