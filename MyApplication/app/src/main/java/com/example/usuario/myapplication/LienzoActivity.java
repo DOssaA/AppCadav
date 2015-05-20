@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
@@ -79,7 +81,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         largeBrush = 25;
 
         drawView.setBrushSize(mediumBrush);
-        drawView.setBackgroundResource(R.drawable.canvas_lienzo_terminar);
+        //drawView.setBackgroundResource(R.drawable.canvas_lienzo_terminar);
 
         //erase btn
         eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
@@ -239,29 +241,58 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
 
     }
 
-    public void subirAporte(final Bitmap bitmap){
+    public void subirAporte(final Bitmap bitmap1){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Creacion");
 // Retrieve the object by id
         query.getInBackground(idContribuir, new GetCallback<ParseObject>() {
             public void done(ParseObject creacion, ParseException e) {
                 if (e == null) {
+                    //obtener un file con el canvas para contribuir (canvas2)
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     // Compress image to lower quality scale 1 - 100
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream);
                     byte[] image = stream.toByteArray();
                     // Create the ParseFile
                     ParseFile file = new ParseFile("image.png", image);
                     // Upload the image into Parse Cloud
                     file.saveInBackground();
+
+                    //obtener un file con el canvas para contribuir (canvas1)
+                    ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+                    // Compress image to lower quality scale 1 - 100
+                    cutTop(bitmap).compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] image1 = stream.toByteArray();
+                    // Create the ParseFile
+                    ParseFile file1 = new ParseFile("image.png", image);
+                    // Upload the image into Parse Cloud
+                    file.saveInBackground();
+
                     // Now let's update it with some new data. In this case, only cheatMode and score
                     // will get sent to the Parse Cloud. playerName hasn't changed.
                     creacion.put("estado", 1+"");
                     creacion.put("canvas2", file);
-                    creacion.put("usuario2",getNick());
+                    creacion.put("usuario2", getNick());
+                    creacion.put("canvas1",file1);
                     creacion.saveInBackground();
                 }
             }
         });
+    }
+
+    /*
+Corta la parte inicil de un Bitmap
+*/
+    private Bitmap cutTop(Bitmap origialBitmap) {
+        Bitmap cutBitmap = Bitmap.createBitmap(origialBitmap.getWidth(),
+                (6*origialBitmap.getHeight())/7, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(cutBitmap);
+        //Rect srcRect = new Rect(0, 6*(origialBitmap.getHeight() / 7), origialBitmap.getWidth() ,
+        //origialBitmap.getHeight());
+        Rect srcRect = new Rect(0,0,origialBitmap.getWidth(),6*origialBitmap.getHeight()/7 );
+        Rect desRect = new Rect(0, 0, origialBitmap.getWidth(), 6*origialBitmap.getHeight() / 7);
+        canvas.drawBitmap(origialBitmap, srcRect, desRect, null);
+        return cutBitmap;
     }
 
     public String getNick() {
