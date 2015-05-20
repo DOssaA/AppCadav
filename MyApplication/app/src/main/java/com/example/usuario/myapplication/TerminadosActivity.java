@@ -191,7 +191,9 @@ public class TerminadosActivity extends ActionBarActivity implements SwipeRefres
                     Log.e("terminadosactivity","scoreList.size"+scoreList.size());
                     if(scoreList.size()!=0){
                         for(int i =0; i<scoreList.size();i++){
-
+                            if(i>20){
+                                i = scoreList.size()+2;
+                            }
                             final ParseFile canvas1 = (ParseFile) scoreList.get(i).get("canvas1");
                             final ParseFile canvas2 = (ParseFile) scoreList.get(i).get("canvas2");
                             final String descripcion = ((String)scoreList.get(i).get("descripcion"));

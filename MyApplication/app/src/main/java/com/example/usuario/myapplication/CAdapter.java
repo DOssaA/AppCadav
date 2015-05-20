@@ -22,6 +22,8 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.parse.GetDataCallback;
 import com.parse.ParseFile;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Collections;
@@ -83,9 +85,13 @@ public class CAdapter extends RecyclerView.Adapter<CAdapter.MyViewHolder> {
         holder.title.setText(current.title);
         holder.description.setText(current.description);
         if(current.bitmap1 !=null && current.bitmap2 !=null){
-            holder.image.setImageBitmap(combineImages(current.bitmap1,current.bitmap2));
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
             //holder.image.setImageBitmap(cutTop(current.bitmap1));
             //imageLoader.displayImage(current.getUrl(),holder.image);
+            Bitmap original = combineImages(current.bitmap1,current.bitmap2);
+            holder.image.setImageBitmap(original);
+            // Compress image to lower quality scale 1 - 100
+
         }
         }
     }

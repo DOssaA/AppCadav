@@ -45,6 +45,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
     private String descripcion;
     private  String idContribuir;
     private Stack<Bitmap> pila;   //pila
+    private ParseFile fileCanvas1;
 
     private Bitmap bitmap;
     private Context context;
@@ -222,7 +223,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
 
     public void subirCreacion(Bitmap bitmap, String nombre, String descripcion,String usuario){
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        // Compress image to lower quality scale 1 - 100
+        //  image to lower quality scale 1 - 100
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] image = stream.toByteArray();
         // Create the ParseFile
@@ -257,22 +258,13 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                     // Upload the image into Parse Cloud
                     file.saveInBackground();
 
-                    //obtener un file con el canvas para contribuir (canvas1)
-                    ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
-                    // Compress image to lower quality scale 1 - 100
-                    cutTop(bitmap).compress(Bitmap.CompressFormat.PNG, 100, stream);
-                    byte[] image1 = stream.toByteArray();
-                    // Create the ParseFile
-                    ParseFile file1 = new ParseFile("image.png", image);
-                    // Upload the image into Parse Cloud
-                    file.saveInBackground();
 
                     // Now let's update it with some new data. In this case, only cheatMode and score
                     // will get sent to the Parse Cloud. playerName hasn't changed.
                     creacion.put("estado", 1+"");
                     creacion.put("canvas2", file);
                     creacion.put("usuario2", getNick());
-                    creacion.put("canvas1",file1);
+                    creacion.put("canvas1",fileCanvas1);
                     creacion.saveInBackground();
                 }
             }
@@ -347,6 +339,16 @@ Corta la parte inicil de un Bitmap
                                                 bytes, 0,
                                                 bytes.length);
                                 idContribuir = temporal;
+                                //obtener un file con el canvas para contribuir (canvas1)
+                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                // Compress image to lower quality scale 1 - 100
+                                cutTop(bitmap).compress(Bitmap.CompressFormat.PNG, 100, stream);
+                                byte[] image1 = stream.toByteArray();
+                                // Create the ParseFile
+                                fileCanvas1= new ParseFile("image.png", image1);
+                                // Upload the image into Parse Cloud
+                                fileCanvas1.saveInBackground();
+
                                 drawView.setBackgroundBitmap(bitmap);
                                 Log.e("lienzoactivity", " se obtuvo el cadaver aleatorio");
                                 cambiarEstadoCreacion(2);

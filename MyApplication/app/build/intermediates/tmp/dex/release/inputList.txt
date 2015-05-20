@@ -1,0 +1,12 @@
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\classes\release
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\support-annotations-21.0.3-5948b584abd9b65591f6075fb6d270fb9fe3e6fd.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\classes-821782bd201e69b41174d20b0d3c28e2f95cd4f9.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\classes-fc95d94f1e65febb0a93bb2e86a79823bab2956d.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\bolts-android-1.2.0-1b61e5a16bc2ee63c3fe42faa7cce8cd54360020.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\universal-image-loader-1.9.3-1cf9c807a744ef4d0b8ef2cbfc9467f4525e38e3.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\internal_impl-21.0.3-953827a89b6c47dfc845d3833409a83a3c6d864e.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\classes-5576b2b436d8969a19e5717c3063931dfadd02d6.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\classes-2af0da07146d159ff456bcf724a8f63654985cee.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\Parse-1.9.1-5e6163ce6996b3752cec831438a94e1c486bcd2c.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\classes-3eb2705eba76774ef97682469ebd84d2d3230ec5.jar
+C:\Users\usuario\Desktop\AppCadav\MyApplication\app\build\intermediates\pre-dexed\release\classes-7efd3007dfbd225fdad16a9a18c19cb9e7ef4285.jar

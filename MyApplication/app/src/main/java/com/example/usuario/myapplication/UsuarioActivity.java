@@ -148,7 +148,7 @@ public class UsuarioActivity extends ActionBarActivity {
         //Consultar la base de datos
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Creacion");
         query.whereEqualTo("estado", "1");
-        query.whereEqualTo("usuario1","prueba");
+        query.whereEqualTo("usuario1",getNick());
         query.orderByDescending("createdAt");
         //Traer una lista de los objetos de la base de datos
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -220,6 +220,14 @@ public class UsuarioActivity extends ActionBarActivity {
 
         })
         ;
+    }
+
+    public String getNick() {
+        // Obtener el nick del SharedPreferences
+        final SharedPreferences prefs = getSharedPreferences("login", this.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        String nickPreference = prefs.getString("usuario", "nulo");
+        return nickPreference;
     }
 
 

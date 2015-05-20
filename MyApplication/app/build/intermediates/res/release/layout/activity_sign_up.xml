@@ -1,0 +1,85 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.usuario.myapplication.SignUpActivity"
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/inicio_01"
+    android:orientation="horizontal"
+    >
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></View>
+
+    <LinearLayout  android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_weight="2.2" >
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:id="@+id/editTextCorreoR"
+            android:hint="CORREO"
+            android:padding="10dp"
+            android:background="@drawable/selector_pass"
+            style="@style/editTextsExtended"
+            android:layout_marginBottom="8dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:id="@+id/editTextUsuarioR"
+            android:text=""
+            android:background="@drawable/selector_usuario"
+            android:hint="USUARIO"
+            android:padding="10dp"
+            android:layout_marginBottom="8dp"
+            style="@style/editTexts"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="textPassword"
+            android:id="@+id/textPassword"
+            android:text=""
+            android:background="@drawable/selector_pass"
+            android:hint="PASSWORD"
+            android:padding="10dp"
+            android:layout_marginBottom="8dp"
+            style="@style/editTextsExtended"
+            />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitEnd"
+                android:background="@null"
+                android:src="@drawable/btn_registro_reg"
+                android:id="@+id/btnRegistrar"
+                android:onClick="onRegistrar"
+                />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></View>
+
+</LinearLayout>
+</RelativeLayout><!-- From: file:/C:/Users/usuario/Desktop/AppCadav/MyApplication/app/src/main/res/layout/activity_sign_up.xml -->
