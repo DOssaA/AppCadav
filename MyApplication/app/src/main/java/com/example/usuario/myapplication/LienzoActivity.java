@@ -46,7 +46,6 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
     private  String idContribuir;
     private Stack<Bitmap> pila;   //pila
     private ParseFile fileCanvas1;
-
     private Bitmap bitmap;
     private Context context;
 
@@ -220,6 +219,10 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
             saveDialog.show();
         }
     }
+
+    /*
+    Subir la creacion a Parse
+     */
 
     public void subirCreacion(Bitmap bitmap, String nombre, String descripcion,String usuario){
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
