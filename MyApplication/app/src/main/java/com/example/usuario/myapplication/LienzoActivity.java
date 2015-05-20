@@ -168,6 +168,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                 drawView.setErase(false);
                 drawView.setBrushSize(smallBrush);
                 drawView.setLastBrushSize(smallBrush);
+                zonaBotonesBrush.setBackgroundResource(R.drawable.tres);
                 zonaBotonesBrush.setVisibility(View.INVISIBLE);
             }
         }
@@ -177,6 +178,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                 drawView.setErase(false);
                 drawView.setBrushSize(mediumBrush);
                 drawView.setLastBrushSize(mediumBrush);
+                zonaBotonesBrush.setBackgroundResource(R.drawable.dos);
                 zonaBotonesBrush.setVisibility(View.INVISIBLE);
             }
 
@@ -186,6 +188,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
             if(zonaBotonesBrush.getVisibility()==View.VISIBLE) {
                 drawView.setErase(false);
                 drawView.setBrushSize(largeBrush);
+                zonaBotonesBrush.setBackgroundResource(R.drawable.uno);
                 drawView.setLastBrushSize(largeBrush);
             }
 
