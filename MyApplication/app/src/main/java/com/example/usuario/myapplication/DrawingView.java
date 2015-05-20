@@ -1,12 +1,11 @@
 package com.example.usuario.myapplication;
 
-<<<<<<< HEAD
+
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.view.View;
-=======
->>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -77,11 +76,9 @@ public class DrawingView extends View {
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
 
         canvasPaint = new Paint(Paint.DITHER_FLAG);
-<<<<<<< HEAD
 
-=======
         paths.add(drawPath);
->>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
+
     }
     public void startNew(){
         drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
@@ -100,7 +97,7 @@ public class DrawingView extends View {
      */
     @Override
     protected void onDraw(Canvas canvas) {
-<<<<<<< HEAD
+
         if(getBackgroundBitmap() != null){
             Bitmap bmp= getBackgroundBitmap();
             bmp = cutBottom(bmp);
@@ -149,12 +146,12 @@ public class DrawingView extends View {
 
     protected void onDrawBitmap(Canvas canvas,Bitmap bmp){
         canvas.drawBitmap(bmp,0,0,canvasPaint);
-=======
+
         for (Path p : paths){
             canvas.drawPath(p, drawPaint);
         }
         //canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
->>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
+
         canvas.drawPath(drawPath, drawPaint);
     }
 

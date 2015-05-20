@@ -95,15 +95,12 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
 
         idContribuir="";
         context= getApplicationContext();
-<<<<<<< HEAD
+
         if(isNuevo.equalsIgnoreCase("noesnuevo")){
             obtenerCadaverAleatorio();
         }
-=======
-        obtenerCadaverAleatorio();
-
         //actualizarPila();
->>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
+
     }
 
     @Override
@@ -201,6 +198,7 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                         Intent i = new Intent(getApplicationContext(),TerminadosActivity.class);
                         startActivity(i);
                         finish();
+
                     }else if(isNuevo.equalsIgnoreCase("noesnuevo")){
                         // Sube un aporte a una creacion existente
                         subirAporte(drawView.getDrawingCache());
@@ -208,7 +206,6 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                         startActivity(i);
 
                         finish();
-
                     }
               }
             });
