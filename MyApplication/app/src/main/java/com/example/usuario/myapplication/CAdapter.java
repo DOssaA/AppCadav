@@ -13,17 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.usuario.anim.AnimationUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-<<<<<<< HEAD
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-=======
->>>>>>> a50cafcda714b4c492bd00a5115b2b8ba0898bbb
 import java.util.Collections;
 import java.util.List;
 
