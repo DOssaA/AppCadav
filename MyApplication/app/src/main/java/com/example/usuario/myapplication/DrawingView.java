@@ -66,6 +66,7 @@ public class DrawingView extends View {
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
 
         canvasPaint = new Paint(Paint.DITHER_FLAG);
+
     }
     public void startNew(){
         drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
@@ -109,7 +110,7 @@ public class DrawingView extends View {
         Canvas canvas = new Canvas(cutBitmap);
         Rect srcRect = new Rect(0, 6*(origialBitmap.getHeight() / 7), origialBitmap.getWidth() ,
                 origialBitmap.getHeight());
-        Rect desRect = new Rect(0, 0, origialBitmap.getWidth(), origialBitmap.getHeight() / 2);
+        Rect desRect = new Rect(0, 0, origialBitmap.getWidth(), origialBitmap.getHeight() / 7);
         canvas.drawBitmap(origialBitmap, srcRect, desRect, null);
         return cutBitmap;
     }

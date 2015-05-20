@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -36,6 +37,11 @@ public class LoginActivity extends ActionBarActivity {
         loginContext=LoginActivity.this;
         user= (EditText)findViewById(R.id.editTextUsuario);
         password= (EditText)findViewById(R.id.editTextContrasena);
+
+        //Fuente texto
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/baron_neue/baron_neue.otf");
+        user.setTypeface(font);
+        password.setTypeface(font);
 
 //        //Para volver texto a solo mayúculas
 //        user.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
