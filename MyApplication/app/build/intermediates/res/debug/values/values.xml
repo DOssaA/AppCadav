@@ -290,7 +290,7 @@
     <eat-comment/>
     <string name="action_contribuir">Contribuir</string>
     <string name="action_settings">Settings</string>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Cadavre</string>
     <string name="brush">Brush</string>
     <string name="close_session">Cerrar sesión</string>
     <!-- From: file:/C:/AndroidStudioApps/Github/AppCadav/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/common_strings.xml -->
@@ -345,7 +345,7 @@
     <string name="store_picture_title">Save image</string>
     <!-- From: file:/C:/AndroidStudioApps/Github/AppCadav/MyApplication/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Cadavre</string>
     <string name="title_activity_nuevo_cadavre"/>
     <string name="title_activity_participate"/>
     <string name="title_activity_sign_up">SignUpActivity</string>
