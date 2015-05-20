@@ -5,4 +5,4 @@
     <item android:id="@+id/action_contribuir" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
-<!-- From: file:/C:/Users/usuario/Desktop/AppCadav/MyApplication/app/src/main/res/menu/menu_sign_up.xml -->
+<!-- From: file:/C:/AndroidStudioProjects/github/AppCadav/MyApplication/app/src/main/res/menu/menu_sign_up.xml -->

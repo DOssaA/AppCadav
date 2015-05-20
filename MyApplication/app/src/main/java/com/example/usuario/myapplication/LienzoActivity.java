@@ -48,6 +48,10 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
     private ParseFile fileCanvas1;
     private Bitmap bitmap;
     private Context context;
+    private View smallBtn ;
+    private View midBtn;
+    private View BigBtn ;
+    private LinearLayout zonaBotonesBrush;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,48 +106,89 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         }
         //actualizarPila();
 
+        zonaBotonesBrush = (LinearLayout)findViewById(R.id.zonaBtnBrush);
+        smallBtn = findViewById(R.id.tinyBrush);
+        smallBtn.setOnClickListener(this);
+        midBtn = findViewById(R.id.midBrush);
+        midBtn.setOnClickListener(this);
+        BigBtn = findViewById(R.id.bigBrush);
+        BigBtn.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view){
         if(view.getId()==R.id.draw_btn){
             //draw button clicked
-            final Dialog brushDialog = new Dialog(this);
-            brushDialog.setTitle("Brush size:");
-            brushDialog.setContentView(R.layout.brush_chooser);
-            ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
-            smallBtn.setOnClickListener(new OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    drawView.setErase(false);
-                    drawView.setBrushSize(smallBrush);
-                    drawView.setLastBrushSize(smallBrush);
-                    brushDialog.dismiss();
-                }
-            });
 
-            ImageButton mediumBtn = (ImageButton)brushDialog.findViewById(R.id.medium_brush);
-            mediumBtn.setOnClickListener(new OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    drawView.setErase(false);
-                    drawView.setBrushSize(mediumBrush);
-                    drawView.setLastBrushSize(mediumBrush);
-                    brushDialog.dismiss();
-                }
-            });
+            if(zonaBotonesBrush.getVisibility()==View.INVISIBLE)
+                zonaBotonesBrush.setVisibility(View.VISIBLE);
+            else zonaBotonesBrush.setVisibility(View.INVISIBLE);
 
-            ImageButton largeBtn = (ImageButton)brushDialog.findViewById(R.id.large_brush);
-            largeBtn.setOnClickListener(new OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    drawView.setErase(false);
-                    drawView.setBrushSize(largeBrush);
-                    drawView.setLastBrushSize(largeBrush);
-                    brushDialog.dismiss();
-                }
-            });
-            brushDialog.show();
+//            final Dialog brushDialog = new Dialog(this);
+//            brushDialog.setTitle("Brush size:");
+//            brushDialog.setContentView(R.layout.brush_chooser);
+//            ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
+//            smallBtn.setOnClickListener(new OnClickListener(){
+//                @Override
+//                public void onClick(View v) {
+//                    drawView.setErase(false);
+//                    drawView.setBrushSize(smallBrush);
+//                    drawView.setLastBrushSize(smallBrush);
+//                    brushDialog.dismiss();
+//                }
+//            });
+//
+//            ImageButton mediumBtn = (ImageButton)brushDialog.findViewById(R.id.medium_brush);
+//            mediumBtn.setOnClickListener(new OnClickListener(){
+//                @Override
+//                public void onClick(View v) {
+//                    drawView.setErase(false);
+//                    drawView.setBrushSize(mediumBrush);
+//                    drawView.setLastBrushSize(mediumBrush);
+//                    brushDialog.dismiss();
+//                }
+//            });
+//
+//            ImageButton largeBtn = (ImageButton)brushDialog.findViewById(R.id.large_brush);
+//            largeBtn.setOnClickListener(new OnClickListener(){
+//                @Override
+//                public void onClick(View v) {
+//                    drawView.setErase(false);
+//                    drawView.setBrushSize(largeBrush);
+//                    drawView.setLastBrushSize(largeBrush);
+//                    brushDialog.dismiss();
+//                }
+//            });
+//            brushDialog.show();
+        }
+
+        else if(view.getId()==R.id.tinyBrush){
+            if(zonaBotonesBrush.getVisibility()==View.VISIBLE) {
+                drawView.setErase(false);
+                drawView.setBrushSize(smallBrush);
+                drawView.setLastBrushSize(smallBrush);
+                zonaBotonesBrush.setVisibility(View.INVISIBLE);
+            }
+        }
+        else if(view.getId()==R.id.midBrush){
+
+            if(zonaBotonesBrush.getVisibility()==View.VISIBLE) {
+                drawView.setErase(false);
+                drawView.setBrushSize(mediumBrush);
+                drawView.setLastBrushSize(mediumBrush);
+                zonaBotonesBrush.setVisibility(View.INVISIBLE);
+            }
+
+        }
+        else if(view.getId()==R.id.bigBrush){
+
+            if(zonaBotonesBrush.getVisibility()==View.VISIBLE) {
+                drawView.setErase(false);
+                drawView.setBrushSize(largeBrush);
+                drawView.setLastBrushSize(largeBrush);
+            }
+
         }
 
         else if(view.getId()==R.id.erase_btn){

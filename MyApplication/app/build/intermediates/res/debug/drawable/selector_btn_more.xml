@@ -3,4 +3,4 @@
     <item android:drawable="@drawable/btn_more_press" android:state_pressed="true"></item>
     <item android:drawable="@drawable/btn_more_press" android:state_focused="true"></item>
     <item android:drawable="@drawable/btn_more"></item>
-</selector><!-- From: file:/C:/Users/usuario/Desktop/AppCadav/MyApplication/app/src/main/res/drawable/selector_btn_more.xml -->
+</selector><!-- From: file:/C:/AndroidStudioProjects/github/AppCadav/MyApplication/app/src/main/res/drawable/selector_btn_more.xml -->
