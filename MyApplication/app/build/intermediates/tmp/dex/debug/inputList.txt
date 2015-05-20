@@ -1,8 +1,11 @@
 C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\classes\debug
 C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-cb627843a5de91fc16a11d4e2a4eddd206d08fea.jar
+C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\classes-0c4568b434953f29561cd1fe7d405262413b3b89.jar
 C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\classes-45dbb09a686b256b371b7524f84472c94ac1117e.jar
 C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\classes-64849e7a65599b389af17a5d66f4b050cbb3eb66.jar
+C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\classes-341a74bcae0a192565351b7858a10db494981628.jar
 C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-0bf0278b26f6d84800e84fbb2121bf71492c3b74.jar
+C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\library-2.4.0-e6d61814e1daa5028431a596584a6de9ed53c1f7.jar
 C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.3-243b23196fc7130cffa41451cf34be36eaa24a8c.jar
 C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-600a10dc0660965482516e5e4e7c4eadf3382355.jar
 C:\AndroidStudioApps\Github\AppCadav\MyApplication\app\build\intermediates\pre-dexed\debug\classes-882f3169b4a342904efcbce221118917475d9c54.jar
