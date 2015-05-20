@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,17 +28,19 @@ import com.parse.ParseQuery;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Stack;
 
 
 public class LienzoActivity extends ActionBarActivity implements OnClickListener {
 
     private DrawingView drawView;
-    private ImageButton currPaint,drawBtn,eraseBtn,newBtn,saveBtn;
+    private ImageButton currPaint,drawBtn,eraseBtn,newBtn,saveBtn,atrasBtn;
     private float smallBrush, mediumBrush, largeBrush;
     private String isNuevo;
     private String titulo;
     private String descripcion;
     private  String idContribuir;
+    private Stack<Bitmap> pila;   //pila
 
     private Bitmap bitmap;
     private Context context;
@@ -51,11 +54,17 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         isNuevo= extras.getString("esnuevo");
         titulo= extras.getString("titulo");
         descripcion= extras.getString("descripcion");
+        pila = new Stack<>();
         drawView = (DrawingView)findViewById(R.id.drawing);
+        drawView.setPadre(LienzoActivity.this);
+
         //Instance LinearLayout and ImageButton
         LinearLayout paintLayout = (LinearLayout)findViewById(R.id.paint_colors);
+
         currPaint = (ImageButton)paintLayout.getChildAt(0);
         currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
+
+        //Brush btn
         drawBtn = (ImageButton)findViewById(R.id.draw_btn);
         drawBtn.setOnClickListener(this);
 
@@ -66,14 +75,23 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         drawView.setBrushSize(mediumBrush);
         drawView.setBackgroundResource(R.drawable.canvas_lienzo_terminar);
 
+        //erase btn
         eraseBtn = (ImageButton)findViewById(R.id.erase_btn);
         eraseBtn.setOnClickListener(this);
 
+        //save btn
         saveBtn = (ImageButton)findViewById(R.id.save_btn);
         saveBtn.setOnClickListener(this);
+
+        //atras btn
+        atrasBtn = (ImageButton) findViewById(R.id.atras_btn);
+        atrasBtn.setOnClickListener(this);
+
         idContribuir="";
         context= getApplicationContext();
         obtenerCadaverAleatorio();
+
+        //actualizarPila();
     }
 
     @Override
@@ -126,6 +144,15 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
             brushDialog.show();
         }
 
+        else if(view.getId()==R.id.atras_btn) {
+//            if(!(pila.empty())) {
+//                drawView.setFondoAnterior(pila.get(pila.size()-1));
+//                Log.d("atrasBtn", "sdasdsd sds a ----  pila size = "+pila.size());
+//                pila.pop();
+//            }
+            drawView.onClickUndo();
+
+        }
 //        else if(view.getId()==R.id.new_btn){
 //            //new button
 //            AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
@@ -307,5 +334,14 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    public void actualizarPila() {
+        drawView.setDrawingCacheEnabled(true);
+        Bitmap bitmap = drawView.getDrawingCache();
+        pila.push(bitmap);
+        Log.d("actualizarPila","sdaasdsadsadsdasda");
     }
 }

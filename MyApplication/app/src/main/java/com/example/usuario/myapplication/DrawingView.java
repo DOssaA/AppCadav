@@ -1,17 +1,19 @@
 package com.example.usuario.myapplication;
 
-import android.graphics.Color;
-import android.view.View;
 import android.content.Context;
-import android.util.AttributeSet;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.view.MotionEvent;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.MotionEvent;
+import android.view.View;
+
+import java.util.ArrayList;
 
 /**
  * Created by usuario on 11/03/2015.
@@ -32,6 +34,10 @@ public class DrawingView extends View {
     private float brushSize, lastBrushSize;
 
     private boolean erase=false;
+    private LienzoActivity lienzoActivity;
+
+    private ArrayList<Path> paths = new ArrayList<Path>();
+    private ArrayList<Path> undonePaths = new ArrayList<Path>();
 
     public DrawingView(Context context, AttributeSet attrs){
         super(context, attrs);
@@ -53,6 +59,7 @@ public class DrawingView extends View {
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
 
         canvasPaint = new Paint(Paint.DITHER_FLAG);
+        paths.add(drawPath);
     }
     public void startNew(){
         drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
@@ -68,7 +75,10 @@ public class DrawingView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+        for (Path p : paths){
+            canvas.drawPath(p, drawPaint);
+        }
+        //canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
         canvas.drawPath(drawPath, drawPaint);
     }
 
@@ -88,6 +98,8 @@ public class DrawingView extends View {
         else drawPaint.setXfermode(null);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                undonePaths.clear();
+                drawPath.reset();
                 drawPath.moveTo(touchX, touchY);
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -95,7 +107,10 @@ public class DrawingView extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 drawCanvas.drawPath(drawPath, drawPaint);
-                drawPath.reset();
+//                drawPath.reset();
+//                lienzoActivity.actualizarPila();
+                paths.add(drawPath);
+                drawPath = new Path();
                 break;
             default:
                 return false;
@@ -123,5 +138,30 @@ public class DrawingView extends View {
 //set erase true or false
         erase=isErase;
     }
+
+
+    public void setPadre(LienzoActivity lienzoActivity) {
+        this.lienzoActivity = lienzoActivity;
+    }
+
+    public void setFondoAnterior(Bitmap bitmap) {
+        drawCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+        drawCanvas.drawBitmap(bitmap, 0, 0, drawPaint);
+        postInvalidate();
+    }
+
+    public void onClickUndo () {
+        if (paths.size()>0)
+        {
+            undonePaths.add(paths.remove(paths.size()-1));
+            invalidate();
+        }
+        else
+        {
+
+        }
+        //toast the user
+    }
+
 
 }

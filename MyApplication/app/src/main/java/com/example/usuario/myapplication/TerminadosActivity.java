@@ -87,7 +87,6 @@ public class TerminadosActivity extends ActionBarActivity implements SwipeRefres
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
