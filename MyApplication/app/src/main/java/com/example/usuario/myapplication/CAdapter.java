@@ -83,12 +83,26 @@ public class CAdapter extends RecyclerView.Adapter<CAdapter.MyViewHolder> {
         holder.title.setText(current.title);
         holder.description.setText(current.description);
         if(current.bitmap1 !=null && current.bitmap2 !=null){
-            holder.image.setImageBitmap(combineImages(current.bitmap1,current.bitmap2));
-            //holder.image.setImageBitmap(cutRightTop(current.bitmap1));
+            //holder.image.setImageBitmap(combineImages(current.bitmap1,current.bitmap2));
+            holder.image.setImageBitmap(cutBottom(current.bitmap1));
             //imageLoader.displayImage(current.getUrl(),holder.image);
         }
         }
+    }
 
+    /*
+   Corta la parte final de un Bitmap
+    */
+    private Bitmap cutBottom(Bitmap origialBitmap) {
+        Bitmap cutBitmap = Bitmap.createBitmap(origialBitmap.getWidth(),
+                origialBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(cutBitmap);
+        Rect srcRect = new Rect(0, 6*(origialBitmap.getHeight() / 7), origialBitmap.getWidth() ,
+                origialBitmap.getHeight());
+        Rect desRect = new Rect(0, 0, origialBitmap.getWidth(), origialBitmap.getHeight() / 7);
+        canvas.drawBitmap(origialBitmap, srcRect, desRect, null);
+        return cutBitmap;
     }
 
     public Bitmap combineImages(Bitmap c, Bitmap s) { // can add a 3rd parameter 'String loc' if you want to save the new image - left some code to do that at the bottom

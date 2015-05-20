@@ -98,9 +98,13 @@ public class DrawingView extends View {
         }
 
     }
+
+    /*
+    Corta la parte final de un Bitmap
+     */
     private Bitmap cutBottom(Bitmap origialBitmap) {
         Bitmap cutBitmap = Bitmap.createBitmap(origialBitmap.getWidth(),
-                origialBitmap.getHeight()/2, Bitmap.Config.ARGB_8888);
+                origialBitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
         Canvas canvas = new Canvas(cutBitmap);
         Rect srcRect = new Rect(0, 6*(origialBitmap.getHeight() / 7), origialBitmap.getWidth() ,
@@ -109,6 +113,8 @@ public class DrawingView extends View {
         canvas.drawBitmap(origialBitmap, srcRect, desRect, null);
         return cutBitmap;
     }
+
+
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
         int width = bm.getWidth();
         int height = bm.getHeight();

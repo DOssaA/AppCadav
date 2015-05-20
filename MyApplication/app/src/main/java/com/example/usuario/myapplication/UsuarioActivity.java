@@ -78,8 +78,6 @@ public class UsuarioActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-
     }
 
     @Override
@@ -151,6 +149,7 @@ public class UsuarioActivity extends ActionBarActivity {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Creacion");
         query.whereEqualTo("estado", "1");
         query.whereEqualTo("usuario1","prueba");
+        query.orderByDescending("createdAt");
         //Traer una lista de los objetos de la base de datos
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> scoreList, com.parse.ParseException e) {
@@ -197,6 +196,8 @@ public class UsuarioActivity extends ActionBarActivity {
                                             temporal.setUsuario2(usuario2);
                                             temporal.setTitle(titulo);
                                             listaCreaciones.add(temporal);
+                                            adapter = new CAdapter(UsuarioActivity.this, listaCreaciones);   //this o get Activity()
+                                            recyclerView.setAdapter(adapter);
                                         }
                                     });
                                 }
@@ -204,8 +205,7 @@ public class UsuarioActivity extends ActionBarActivity {
 
                         }
                         // mSwipeRefreshLayout.setRefreshing(false);
-                        adapter = new CAdapter(UsuarioActivity.this, listaCreaciones);   //this o get Activity()
-                        recyclerView.setAdapter(adapter);
+
                     }else{
                         Toast.makeText(UsuarioActivity.this, "No hay Cadavres", Toast.LENGTH_SHORT).show();
                     }

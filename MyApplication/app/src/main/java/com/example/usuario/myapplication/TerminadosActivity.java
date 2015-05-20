@@ -92,14 +92,12 @@ public class TerminadosActivity extends ActionBarActivity {
 
     void refreshItems() {
 
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-
-
         Log.e("terminadosActivity","onResume"+listaCreaciones.size());
 
     }
@@ -183,6 +181,7 @@ public class TerminadosActivity extends ActionBarActivity {
         //Consultar la base de datos
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Creacion");
         query.whereEqualTo("estado", "1");
+        query.orderByDescending("createdAt");
         //Traer una lista de los objetos de la base de datos
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> scoreList, com.parse.ParseException e) {
@@ -240,20 +239,20 @@ public class TerminadosActivity extends ActionBarActivity {
                         dismissProgressBar();
                        // mSwipeRefreshLayout.setRefreshing(false);
                     }else{
+                        dismissProgressBar();
                         Toast.makeText(context,"No hay Cadavres",Toast.LENGTH_SHORT).show();
                     }
 
 
                 } else
                 {
-
+                    dismissProgressBar();
                     Toast.makeText(context,"Error de conexion",Toast.LENGTH_SHORT).show();
                 }
             }
-        })
-        ;
-
+        });
     }
+
     /*
     Comprobar si hay cadaveres disponibles para contribuir
      */

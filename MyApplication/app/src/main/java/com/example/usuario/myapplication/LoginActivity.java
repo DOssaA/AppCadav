@@ -136,7 +136,6 @@ public class LoginActivity extends ActionBarActivity {
         if (id == R.id.action_contribuir) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
