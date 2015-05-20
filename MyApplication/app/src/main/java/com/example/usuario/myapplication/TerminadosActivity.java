@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.utils.L;
 import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseFile;
@@ -35,7 +37,7 @@ import java.util.List;
 /*
 
  */
-public class TerminadosActivity extends ActionBarActivity {
+public class TerminadosActivity extends ActionBarActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView recyclerView;
     private CAdapter adapter;
@@ -46,6 +48,7 @@ public class TerminadosActivity extends ActionBarActivity {
     List<ParseObject> ob;
     private Dialog progressDialog;
     private Bitmap bitmap1=null,bitmap2=null;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     @Override
@@ -63,19 +66,11 @@ public class TerminadosActivity extends ActionBarActivity {
         }
 
         Log.e("terminadosactivity","onCreate ");
-        //mSwipeRefreshLayout= (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
-//        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                // Refresh items
-//                refreshItems();
-//
-//            }
-//
-//        });
-
-
         setContentView(R.layout.activity_terminados);
+
+        mSwipeRefreshLayout= (SwipeRefreshLayout)findViewById(R.id.mSwipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+
         listaCreaciones= new ArrayList<Info>();
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
@@ -172,6 +167,7 @@ public class TerminadosActivity extends ActionBarActivity {
     public void descargarCreacionesTerminadas(){
         //showProgressBar("Cargando...");
         //Consultar la base de datos
+        listaCreaciones= new ArrayList<Info>();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Creacion");
         query.whereEqualTo("estado", "1");
         //Traer una lista de los objetos de la base de datos
@@ -226,9 +222,6 @@ public class TerminadosActivity extends ActionBarActivity {
                             });
 
                         }
-                       // mSwipeRefreshLayout.setRefreshing(false);
-                        adapter = new CAdapter(context.getApplicationContext(), listaCreaciones);   //this o get Activity()
-                        recyclerView.setAdapter(adapter);
                         dismissProgressBar();
                     }else{
                         Toast.makeText(context,"No hay Cadavres",Toast.LENGTH_SHORT).show();
@@ -238,8 +231,9 @@ public class TerminadosActivity extends ActionBarActivity {
                     dismissProgressBar();
                     Toast.makeText(context,"Error de conexion",Toast.LENGTH_SHORT).show();
                 }
-                adapter = new CAdapter(context.getApplicationContext(), listaCreaciones);   //this o get Activity()
+                adapter = new CAdapter(context, listaCreaciones);   //this o get Activity()
                 recyclerView.setAdapter(adapter);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
 
         })
@@ -247,4 +241,9 @@ public class TerminadosActivity extends ActionBarActivity {
     }
 
 
+    @Override
+    public void onRefresh() {
+        L.e("onRefresh");
+        descargarCreacionesTerminadas();
+    }
 }
