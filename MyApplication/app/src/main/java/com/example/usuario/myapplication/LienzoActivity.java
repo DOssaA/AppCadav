@@ -49,7 +49,6 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
     private Bitmap bitmap;
     private Context context;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,6 +152,33 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
             brushDialog.setTitle("Eraser size:");
             brushDialog.setContentView(R.layout.brush_chooser);
             brushDialog.show();
+            ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
+            smallBtn.setOnClickListener(new OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(true);
+                    drawView.setBrushSize(smallBrush);
+                    brushDialog.dismiss();
+                }
+            });
+            ImageButton mediumBtn = (ImageButton)brushDialog.findViewById(R.id.medium_brush);
+            mediumBtn.setOnClickListener(new OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(true);
+                    drawView.setBrushSize(mediumBrush);
+                    brushDialog.dismiss();
+                }
+            });
+            ImageButton largeBtn = (ImageButton)brushDialog.findViewById(R.id.large_brush);
+            largeBtn.setOnClickListener(new OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(true);
+                    drawView.setBrushSize(largeBrush);
+                    brushDialog.dismiss();
+                }
+            });
         }
 
         else if(view.getId()==R.id.atras_btn) {
@@ -260,7 +286,6 @@ public class LienzoActivity extends ActionBarActivity implements OnClickListener
                     ParseFile file = new ParseFile("image.png", image);
                     // Upload the image into Parse Cloud
                     file.saveInBackground();
-
 
                     // Now let's update it with some new data. In this case, only cheatMode and score
                     // will get sent to the Parse Cloud. playerName hasn't changed.
