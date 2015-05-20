@@ -82,8 +82,47 @@
       <file leaf-file-name="LienzoActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/LienzoActivity.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-23.241379">
+              <caret line="152" column="35" selection-start-line="152" selection-start-column="35" selection-end-line="152" selection-end-column="35" />
+              <folding>
+                <element signature="e#9784#10252#0" expanded="true" />
+                <element signature="e#10251#10252#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DrawingView.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/DrawingView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.53168046">
+              <caret line="107" column="39" selection-start-line="107" selection-start-column="39" selection-end-line="107" selection-end-column="39" />
+              <folding>
+                <element signature="e#1018#1024#0" expanded="true" />
+                <element signature="e#1083#1089#0" expanded="true" />
+                <element signature="e#4055#4056#0" expanded="true" />
+                <element signature="e#4093#4094#0" expanded="true" />
+                <element signature="e#4130#4131#0" expanded="true" />
+                <element signature="e#4166#4167#0" expanded="true" />
+                <element signature="e#4325#4326#0" expanded="true" />
+                <element signature="e#4377#4378#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="save.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/save.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="paint_pressed.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/paint_pressed.xml">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="160" column="41" selection-start-line="160" selection-start-column="41" selection-end-line="160" selection-end-column="41" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -92,56 +131,20 @@
       <file leaf-file-name="SignUpActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/SignUpActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-              <folding>
-                <element signature="e#2396#3429#0" expanded="true" />
-                <element signature="e#3428#3429#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_login.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.275862">
-              <caret line="71" column="12" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_lienzo.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_lienzo.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.034483">
-              <caret line="119" column="4" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_terminados.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_terminados.xml">
-          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="-12.310345">
               <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
 >>>>>>> origin/master
+=======
+            <state vertical-scroll-proportion="0.0">
+              <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
         </entry>
       </file>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <file leaf-file-name="CAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/CAdapter.java">
@@ -155,11 +158,22 @@
             <state vertical-scroll-proportion="0.3653295">
               <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
 >>>>>>> origin/master
+=======
+      <file leaf-file-name="activity_lienzo.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_lienzo.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.275862">
+              <caret line="32" column="38" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="38" />
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
               <folding />
             </state>
           </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
         </entry>
       </file>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <file leaf-file-name="LoginActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/LoginActivity.java">
@@ -173,14 +187,19 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="23" selection-end-column="39" />
 >>>>>>> origin/master
+=======
+      <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/LoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
         </entry>
       </file>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <file leaf-file-name="UsuarioActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/UsuarioActivity.java">
@@ -194,6 +213,13 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
 >>>>>>> origin/master
+=======
+      <file leaf-file-name="UsuarioActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/UsuarioActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
               <folding />
             </state>
           </provider>
@@ -210,11 +236,11 @@
       <file leaf-file-name="TerminadosActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/TerminadosActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.793104">
-              <caret line="246" column="40" selection-start-line="246" selection-start-column="40" selection-end-line="246" selection-end-column="40" />
+            <state vertical-scroll-proportion="-5.275862">
+              <caret line="68" column="53" selection-start-line="68" selection-start-column="53" selection-end-line="68" selection-end-column="53" />
               <folding>
-                <element signature="e#5983#9777#0" expanded="true" />
-                <element signature="e#9776#9777#0" expanded="true" />
+                <element signature="e#5982#9776#0" expanded="true" />
+                <element signature="e#9775#9776#0" expanded="true" />
               </folding>
 >>>>>>> origin/master
             </state>
@@ -232,8 +258,12 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/NuevoCadavreActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
               <caret line="44" column="39" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
 >>>>>>> origin/master
+=======
+              <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
               <folding />
             </state>
           </provider>
@@ -1374,7 +1404,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/CAdapter.java" />
 =======
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_lienzo.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/LienzoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_usuario.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/NuevoCadavreActivity.java" />
@@ -1382,7 +1411,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/SignUpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_terminados.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/TerminadosActivity.java" />
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/LienzoActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/DrawingView.java" />
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
       </list>
     </option>
   </component>
@@ -1575,6 +1609,24 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
 >>>>>>> origin/master
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyApplication" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1920,7 +1972,7 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
 =======
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32777777" sideWeight="0.48081023" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19333333" sideWeight="0.79317695" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16222222" sideWeight="0.79317695" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1968,6 +2020,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/UsuarioActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -2049,6 +2102,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_nuevo_cadavre.xml">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -2413,6 +2468,7 @@
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/LienzoActivity.java">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -2426,6 +2482,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_usuario.xml">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -2442,25 +2500,29 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/LoginActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+        <state vertical-scroll-proportion="-13.275862">
+          <caret line="71" column="12" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/SignUpActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-          <folding>
-            <element signature="e#2396#3429#0" expanded="true" />
-            <element signature="e#3428#3429#0" expanded="true" />
-          </folding>
-        </state>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_terminados.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.310345">
+          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_terminados.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -2468,9 +2530,12 @@
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_lienzo.xml">
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.275862">
-          <caret line="71" column="12" selection-start-line="71" selection-start-column="12" selection-end-line="71" selection-end-column="12" />
+        <state vertical-scroll-proportion="-8.275862">
+          <caret line="32" column="38" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="38" />
           <folding />
 >>>>>>> origin/master
         </state>
@@ -2479,19 +2544,28 @@
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/paint_pressed.xml">
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="40" />
 =======
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
           <caret line="44" column="39" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
 >>>>>>> origin/master
+=======
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_terminados.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -2522,12 +2596,16 @@
         </state>
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_lienzo.xml">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/LoginActivity.java">
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.034483">
-          <caret line="119" column="4" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
           <folding />
         </state>
       </provider>
+<<<<<<< HEAD
       <provider editor-type-id="android-designer">
         <state />
 >>>>>>> origin/master
@@ -2571,9 +2649,24 @@
 =======
         <state vertical-scroll-proportion="-17.793104">
           <caret line="246" column="40" selection-start-line="246" selection-start-column="40" selection-end-line="246" selection-end-column="40" />
+=======
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/NuevoCadavreActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/TerminadosActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.275862">
+          <caret line="68" column="53" selection-start-line="68" selection-start-column="53" selection-end-line="68" selection-end-column="53" />
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
           <folding>
-            <element signature="e#5983#9777#0" expanded="true" />
-            <element signature="e#9776#9777#0" expanded="true" />
+            <element signature="e#5982#9776#0" expanded="true" />
+            <element signature="e#9775#9776#0" expanded="true" />
           </folding>
 >>>>>>> origin/master
         </state>
@@ -2582,13 +2675,58 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/UsuarioActivity.java">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-1.8579235" vertical-offset="765" max-vertical-offset="5712">
           <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
 =======
         <state vertical-scroll-proportion="0.3653295">
+=======
+        <state vertical-scroll-proportion="0.0">
+>>>>>>> 744a79b70425b8304ee4a20678f7b41230138446
           <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
 >>>>>>> origin/master
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/SignUpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/save.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/LienzoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.241379">
+          <caret line="152" column="35" selection-start-line="152" selection-start-column="35" selection-end-line="152" selection-end-column="35" />
+          <folding>
+            <element signature="e#9784#10252#0" expanded="true" />
+            <element signature="e#10251#10252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/usuario/myapplication/DrawingView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53168046">
+          <caret line="107" column="39" selection-start-line="107" selection-start-column="39" selection-end-line="107" selection-end-column="39" />
+          <folding>
+            <element signature="e#1018#1024#0" expanded="true" />
+            <element signature="e#1083#1089#0" expanded="true" />
+            <element signature="e#4055#4056#0" expanded="true" />
+            <element signature="e#4093#4094#0" expanded="true" />
+            <element signature="e#4130#4131#0" expanded="true" />
+            <element signature="e#4166#4167#0" expanded="true" />
+            <element signature="e#4325#4326#0" expanded="true" />
+            <element signature="e#4377#4378#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
