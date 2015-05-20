@@ -6,10 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -28,9 +26,7 @@ import android.widget.Toast;
 
 import com.nostra13.universalimageloader.utils.L;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.GetDataCallback;
-import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -253,7 +249,7 @@ public class TerminadosActivity extends ActionBarActivity implements SwipeRefres
                     dismissProgressBar();
                     Toast.makeText(context,"Error de conexion",Toast.LENGTH_SHORT).show();
                 }
-
+                mSwipeRefreshLayout.setRefreshing(false);
 
             }
         });
